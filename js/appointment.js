@@ -1,32 +1,27 @@
-document.getElementById("appointmentForm")
-.addEventListener("submit", function(e) {
+document.getElementById("appointmentForm").addEventListener("submit", function (e) {
   e.preventDefault();
 
-  console.log("📌 Form submitted");
+  const symptoms = Array.from(document.querySelectorAll('.checkbox-group input:checked'))
+    .map(cb => cb.value);
 
   const appointment = {
-    name: name.value,
-    email: email.value,
-    age: age.value,
-    doctor: doctor.value,
-    date: date.value,
-    time: time.value,
-    symptoms: symptoms.value
+    name: document.getElementById("name").value.trim(),
+    email: document.getElementById("email").value.trim(),
+    age: document.getElementById("age").value,
+    doctor: document.getElementById("doctor").value,
+    date: document.getElementById("date").value,
+    time: document.getElementById("time").value,
+    symptoms: symptoms,
+    description: document.getElementById("description") ? document.getElementById("description").value.trim() : "",
+    createdAt: new Date().toISOString()
   };
 
-  console.log("📝 Appointment Object:", appointment);
-
-  localStorage.setItem("appointment", JSON.stringify(appointment));
-  console.log("💾 Data saved to localStorage");
-
-  console.log(
-    "📦 Stored Data:",
-    JSON.parse(localStorage.getItem("appointment"))
-  );
+  const existing = JSON.parse(localStorage.getItem("appointments") || "[]");
+  existing.push(appointment);
+  localStorage.setItem("appointments", JSON.stringify(existing));
 
   document.getElementById("successMsg").classList.remove("hidden");
-  console.log("✅ Success message displayed");
-
   this.reset();
-  console.log("🔄 Form reset");
+
+  setTimeout(() => document.getElementById("successMsg").classList.add("hidden"), 5000);
 });

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PCOS Products | Care Her</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<style>
+*{
+  box-sizing:border-box;
+  font-family:"Segoe UI",Arial,sans-serif;
+}
+
+body{
+  margin:0;
+  background:linear-gradient(135deg,#fde4ec,#f4f6f8);
+  color:#333;
+}
+
+.top-bar{
+  background:linear-gradient(135deg,#a53860,#d876d9);
+  color:#fff;
+  padding:18px 25px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  box-shadow:0 4px 15px rgba(0,0,0,0.15);
+}
+.top-bar h1{margin:0;font-size:22px;}
+.top-bar input{
+  padding:10px 14px;
+  width:260px;
+  border-radius:25px;
+  border:none;
+  outline:none;
+}
+
+
+.container{
+  display:grid;
+  grid-template-columns:240px 1fr;
+  gap:25px;
+  padding:25px;
+}
+
+
+.filters{
+  background:#fff;
+  padding:18px;
+  border-radius:15px;
+  box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+.filters h3{
+  margin-top:0;
+  font-size:16px;
+  color:#a53860;
+}
+.filters label{
+  display:block;
+  margin:10px 0;
+  font-size:14px;
+  cursor:pointer;
+}
+
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:22px;
+}
+
+
+.product-card{
+  background:#fff;
+  padding:15px;
+  border-radius:18px;
+  text-align:center;
+  cursor:pointer;
+  box-shadow:0 10px 25px rgba(0,0,0,.1);
+  transition:.3s;
+}
+.product-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 15px 30px rgba(0,0,0,.18);
+}
+.product-card img{
+  width:100%;
+  height:170px;
+  object-fit:contain;
+  margin-bottom:10px;
+}
+.product-card h4{
+  font-size:15px;
+  margin:8px 0;
+}
+.price{
+  color:#d32f2f;
+  font-weight:bold;
+}
+.price span{
+  text-decoration:line-through;
+  color:gray;
+  font-size:12px;
+  margin-left:6px;
+}
+.seller{
+  font-size:12px;
+  color:#777;
+}
+
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  z-index:999;
+}
+.modal-content{
+  background:#fff;
+  padding:25px;
+  width:320px;
+  margin:10% auto;
+  border-radius:18px;
+  text-align:center;
+}
+.close{
+  float:right;
+  cursor:pointer;
+  font-size:18px;
+}
+.buy{
+  margin-top:15px;
+  padding:12px;
+  width:100%;
+  border-radius:25px;
+  background:linear-gradient(135deg,#a53860,#f48fb1);
+  color:#fff;
+  border:none;
+  cursor:pointer;
+}
+
+
+.footer{
+  width:100%;
+  background:#ffe6f2;
+  padding:25px 20px;
+}
+.footer-content{
+  max-width:1100px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:15px;
+}
+.footer-left h3{color:#c93779;}
+.footer-left p{font-size:14px;color:#a83a6a;}
+
+.footer-center a{
+  margin:0 8px;
+  text-decoration:none;
+  color:#c93779;
+  font-weight:500;
+  font-size:14px;
+}
+.footer-center a:hover{color:#ea1068;}
+
+.footer-right{font-size:14px;color:#c93779;}
+
+.footer-bottom{
+  text-align:center;
+  margin-top:15px;
+  font-size:13px;
+  color:#a83a6a;
+  border-top:1px solid #f2b6d8;
+  padding-top:10px;
+}
+
+body.dark .navbar{background:#121212;}
+body.dark .nav-name,
+body.dark .menu a,
+body.dark .nav-clock{color:#ff9fcf;}
+body.dark .menu a:hover{color:#ff5fa2;}
+body.dark .footer{background:#121212;}
+body.dark .footer *{color:#ff9fcf;}
+body.dark .footer-bottom{border-top:1px solid #2a2a2a;}
+body.dark .theme-toggle{background:#000;color:white;}
+
+
+@media(max-width:600px){
+  .flex-box{flex-direction:column;}
+  .menu{gap:16px;}
+}
+
+
+
+  .footer-center a {
+    display: inline-block;
+    margin: 6px;
+  }
+  .footer-right {
+    display: flex;}
+
+</style>
+</head>
+<body>
+
+
+<header class="top-bar">
+  <h1>🛒 PCOS Products</h1>
+  <input type="search" id="searchBox" placeholder="Search PCOS products...">
+</header>
+
+<div class="container">
+
+
+<aside class="filters">
+  <h3>Filter by Price</h3>
+  <label><input type="radio" name="price"> Up to ₹500</label>
+  <label><input type="radio" name="price"> ₹500 – ₹1000</label>
+  <label><input type="radio" name="price"> Above ₹1000</label>
+
+  <h3>Seller</h3>
+  <label><input type="checkbox"> Amazon</label>
+  <label><input type="checkbox"> 1mg</label>
+  <label><input type="checkbox"> PharmEasy</label>
+</aside>
+
+
+<main class="products">
+
+  <div class="product-card" onclick="openProduct('  MYO inositol powder','₹727','Ayurvedic capsules to support hormonal balance.')">
+    <img src="../images/p1.png"><h4>MYO inositol powder</h4>
+    <p class="price">₹727 <span>₹749</span></p><p class="seller">Seller: 1mg</p>
+  </div>
+
+  <div class="product-card" onclick="openProduct('Nveda PCOS Care Capsule','₹430','Herbal PCOS support.')">
+    <img src="../images/p2.png"><h4>Nveda PCOS Care Capsule</h4>
+    <p class="price">₹430 <span>₹690</span></p><p class="seller">Seller: 1mg</p>
+  </div>
+
+  <div class="product-card" onclick="openProduct('Cureayu PCOS Wellness','₹749','Supports ovulation & acne control.')">
+    <img src="../images/p3.png"><h4>Cureayu PCOS Wellness</h4>
+    <p class="price">₹749 <span>₹936</span></p><p class="seller">Seller: Amazon</p>
+  </div>
+
+  <div class="product-card" onclick="openProduct('Hormone balance probiotics ','₹999','Complete PCOS care kit.')">
+    <img src="../images/p4.png"><h4>Hormone balance probiotics </h4>
+    <p class="price">₹999 <span>₹1299</span></p><p class="seller">Seller: PharmEasy</p>
+  </div>
+
+  <div class="product-card" onclick="openProduct('MYO & D-chiro inositol','₹599','Controls insulin resistance.')">
+    <img src="../images/p6.png"><h4>MYO & D-chiro inositol</h4>
+    <p class="price">₹599 <span>₹799</span></p><p class="seller">Seller: 1mg</p>
+  </div>
+
+  <div class="product-card" onclick="openProduct('PCOS gluco','₹499','Reduces cramps & bloating.')">
+    <img src="../images/p7.png"><h4>PCOS gluco</h4>
+    <p class="price">₹499 <span>₹699</span></p><p class="seller">Seller: Amazon</p>
+  </div>
+
+  <div class="product-card" onclick="openProduct('organic spearmint','₹1,299','Ayurvedic PCOS solution.')">
+    <img src="../images/p8.png"><h4>organic spearmint</h4>
+    <p class="price">₹1,299 <span>₹1,599</span></p><p class="seller">Seller: Amazon</p>
+  </div>
+
+  <div class="product-card" onclick="openProduct('Seven Cure PCOS Tablets','₹899','Myo-Inositol & NAC.')">
+    <img src="../images/p9.png"><h4>Seven Cure PCOS Tablets</h4>
+    <p class="price">₹899 <span>₹1,199</span></p><p class="seller">Seller: PharmEasy</p>
+  </div>
+
+  <div class="product-card" onclick="openProduct('Narie PCOS Care','₹749','Hormonal balance support.')">
+    <img src="../images/p10.png"><h4>Narie PCOS Care</h4>
+    <p class="price">₹749 <span>₹999</span></p><p class="seller">Seller: 1mg</p>
+  </div>
+
+  <div class="product-card" onclick="openProduct('Grocare Turmeric Supplement','₹599','Helps reduce cysts.')">
+    <img src="../images/11.png"><h4>Grocare Turmeric Supplement</h4>
+    <p class="price">₹599 <span>₹799</span></p><p class="seller">Seller: Amazon</p>
+  </div>
+
+</main>
+</div>
+
+
+<div id="productModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeProduct()">✖</span>
+    <h2 id="modalTitle"></h2>
+    <p id="modalPrice"></p>
+    <p id="modalDesc"></p>
+    <button class="buy">Buy Now</button>
+  </div>
+</div>
+
+
+<footer class="footer">
+  <div class="footer-content">
+
+    <div class="footer-left">
+      <h3>CareHer</h3>
+      <p>Womens health care platform</p>
+    </div>
+
+    <div class="footer-center">
+      <a href="C:\Users\aksha\OneDrive\Desktop\ICP-13-html-css-js-github-group-project-3-CareHer-Health-care-platform-for-womens-\index.html">Home</a>
+      <a href="healthcheck.html">Health Check</a>
+      <a href="exercise.html">Exercise</a>
+      <a href="contact.html">Contact</a>
+      <a href="review.html">Reviews</a>
+    </div>
+
+    <div class="footer-right">
+      <span class="heart">💗</span>
+      <span>Your health, our priority</span>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © Care Her. All rights reserved.
+  </div>
+</footer>
+
+
+
+<script>
+
+document.getElementById("year").innerText = new Date().getFullYear();
+
+const products=document.querySelectorAll(".product-card");
+const searchBox=document.getElementById("searchBox");
+const modal=document.getElementById("productModal");
+const modalTitle=document.getElementById("modalTitle");
+const modalPrice=document.getElementById("modalPrice");
+const modalDesc=document.getElementById("modalDesc");
+
+searchBox.addEventListener("keyup",()=>{
+  const text=searchBox.value.toLowerCase();
+  products.forEach(card=>{
+    card.style.display=card.innerText.toLowerCase().includes(text)?"block":"none";
+  });
+});
+
+function openProduct(name,price,desc){
+  modalTitle.innerText=name;
+  modalPrice.innerText="Price: "+price;
+  modalDesc.innerText=desc;
+  modal.style.display="block";
+  localStorage.setItem("selectedProduct",JSON.stringify({name,price}));
+}
+
+function closeProduct(){
+  modal.style.display="none";
+}
+
+document.querySelector(".buy").onclick=()=>{
+  const p=JSON.parse(localStorage.getItem("selectedProduct"));
+  alert("Redirecting...\n"+p.name+" - "+p.price);
+  window.open("https://www.amazon.in","_blank");
+};
+
+window.onclick=e=>{
+  if(e.target===modal) closeProduct();
+};
+</script>
+
+</body>
+</html>

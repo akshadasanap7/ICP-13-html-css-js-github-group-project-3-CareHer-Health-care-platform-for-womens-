@@ -1,0 +1,327 @@
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* ================= THEME VARIABLES ================= */
+:root {
+  --primary: #d63384;
+  --secondary: #ff6fae;
+  --bg: #fff0f6;
+  --card: #ffffff;
+  --text: #333;
+  --text-secondary: #555;
+  --btn-bg: linear-gradient(135deg, var(--primary), var(--secondary));
+  --btn-text: #fff;
+}
+
+body.dark {
+  --primary: #ff6fae;
+  --secondary: #ff9ccc;
+  --bg: #1e1e1e;
+  --card: #2c2c2c;
+  --text: #eee;
+  --text-secondary: #ccc;
+  --btn-bg: linear-gradient(135deg, var(--primary), var(--secondary));
+  --btn-text: #fff;
+}
+
+/* ================= BODY ================= */
+body {
+  background: var(--bg);
+  color: var(--text);
+  transition: 0.3s;
+  padding-top: 90px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ================= LIFESTYLE CARDS ================= */
+.lifestyle-card {
+  max-width: 900px;
+  margin: 40px auto;
+  background: var(--card);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.15);
+  transition: 0.3s;
+}
+
+/* ================= HEADINGS ================= */
+h2 {
+  text-align: center;
+  color: var(--primary);
+}
+
+.intro {
+  text-align: center;
+  color: var(--text-secondary);
+  margin-bottom: 30px;
+}
+
+/* ================= SECTIONS ================= */
+.section {
+  margin-bottom: 35px;
+}
+
+.section-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-head img {
+  width: 45px;
+}
+
+.checklist {
+  list-style: none;
+  padding: 0;
+}
+
+.checklist li {
+  background: #f8f8f8;
+  margin: 8px 0;
+  padding: 12px;
+  border-radius: 12px;
+  transition: 0.3s;
+}
+
+body.dark .checklist li {
+  background: #3a3a3a;
+  color: var(--text);
+}
+
+/* ================= FOOD CARDS ================= */
+.food-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 15px;
+  margin: 15px 0;
+}
+
+.food-card {
+  background: #fff0f6;
+  border-radius: 16px;
+  padding: 12px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+body.dark .food-card {
+  background: #3a1f35;
+}
+
+.food-card img {
+  width: 60px;
+}
+
+.food-card p {
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+body.dark .food-card p {
+  color: var(--text);
+}
+
+/* ================= ROUTINE GRID ================= */
+.routine-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 14px;
+}
+
+.box {
+  background: linear-gradient(135deg, #f8bbd0, #e1bee7);
+  padding: 14px;
+  text-align: center;
+  border-radius: 14px;
+  transition: 0.3s;
+}
+
+body.dark .box {
+  background: linear-gradient(135deg, #9c27b0, #6a1b9a);
+  color: #fff;
+}
+
+/* ================= PROGRESS BAR ================= */
+.progress-box {
+  width: 100%;
+  background: #ddd;
+  height: 16px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+body.dark .progress-box {
+  background: #3a1f35;
+}
+
+#lifeBar, #progressBar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  transition: width 0.6s ease;
+}
+
+/* ================= BUTTON ================= */
+button {
+  margin-top: 15px;
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 14px;
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+/* ================= QUIZ WRAPPER ================= */
+.quiz-wrapper {
+  max-width: 700px;
+  width: 90%;
+  background: var(--card);
+  border-radius: 20px;
+  padding: 30px;
+  margin: 40px auto;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: 0.3s;
+}
+
+body.dark .quiz-wrapper {
+  background-image:
+    linear-gradient(var(--card), var(--card)),
+    linear-gradient(135deg, var(--primary), var(--secondary));
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+.quiz-wrapper h1 {
+  color: var(--primary);
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  margin: 12px 0 20px 0;
+}
+
+/* ================= QUIZ OPTIONS ================= */
+.options {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.options button {
+  padding: 12px 25px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  transition: all 0.3s ease;
+  min-width: 120px;
+}
+
+.options button:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 10px 25px rgba(214,51,132,0.35);
+}
+
+.options button:active {
+  transform: scale(0.97);
+}
+
+/* ================= QUIZ RESULT ================= */
+.result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 20px;
+  background: var(--card);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+body.dark .result {
+  background-image:
+    linear-gradient(var(--card), var(--card)),
+    linear-gradient(135deg, var(--primary), var(--secondary));
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+.risk.green { color: green; font-weight: 600; }
+.risk.orange { color: orange; font-weight: 600; }
+.risk.red { color: red; font-weight: 600; }
+
+/* ================= FOOTER ================= */
+.footer {
+  width: 100%;
+  margin-top: 40px;
+  background: linear-gradient(135deg,var(--bg),#ffd6e8);
+  border-top: 1px solid rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+body.dark .footer {
+  background: linear-gradient(135deg,var(--primary),var(--secondary));
+  border-top: 1px solid #333;
+}
+
+.footer-content {
+  max-width: 1100px;
+  margin: auto;
+  padding: 30px 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.footer-brand h3 { color: var(--primary); }
+.footer-links { display: flex; gap: 18px; flex-wrap: wrap; }
+.footer-links a { text-decoration: none; color: var(--text); transition: 0.3s; }
+.footer-links a:hover { color: var(--primary); }
+.footer-note { font-size: 14px; color: var(--text); opacity: 0.8; }
+.footer-bottom { text-align: center; padding: 12px; font-size: 13px; color: var(--text); opacity: 0.7; }
+
+/* ================= TIP ================= */
+.tip {
+  text-align: center;
+  margin-top: 20px;
+  color: var(--text-secondary);
+}
+
+body.dark .tip {
+  color: var(--text);
+}
+
+/* ================= MOBILE ================= */
+@media(max-width:768px){
+  .options { flex-direction: column; gap: 15px; }
+  .footer-content { flex-direction: column; gap: 20px; }
+  .food-grid, .routine-grid { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); }
+}

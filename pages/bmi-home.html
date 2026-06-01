@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BMI Dashboard</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #fff7fb;
+            color: #333;
+        }
+
+        header {
+            background-color: #d85590;
+            color: black;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            padding: 30px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: #c93779;
+        }
+
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .info-table th,
+        .info-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .info-table th {
+            background-color: #f0f3f7;
+        }
+
+        .btn-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .btn {
+            background-color: #d84084;
+            color: black;
+            padding: 14px 30px;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #c93779;
+            transition: 0.3s;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #e9ecef;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>BMI Dashboard</h1>
+    <p>Overview & Basic Information About Body Mass Index</p>
+</header>
+
+<div class="container">
+
+    <div class="cards">
+        <div class="card">
+            <h3>What is BMI?</h3>
+            <p>
+                Body Mass Index (BMI) is a measurement using height and weight
+                to estimate whether a person has a healthy body weight.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Why BMI Matters</h3>
+            <p>
+                BMI is used to identify possible health risks related to
+                underweight, overweight, and obesity.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Limitations of BMI</h3>
+            <p>
+                BMI does not account for muscle mass, bone density, or overall
+                body composition.
+            </p>
+        </div>
+    </div>
+
+    <div class="card" style="margin-top: 30px;">
+        <h3>BMI Categories</h3>
+        <table class="info-table">
+            <tr>
+                <th>BMI Range</th>
+                <th>Category</th>
+            </tr>
+            <tr>
+                <td>Below 18.5</td>
+                <td>Underweight</td>
+            </tr>
+            <tr>
+                <td>18.5 – 24.9</td>
+                <td>Normal weight</td>
+            </tr>
+            <tr>
+                <td>25 – 29.9</td>
+                <td>Overweight</td>
+            </tr>
+            <tr>
+                <td>30 and above</td>
+                <td>Obesity</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Button to go to BMI Calculator Page -->
+    <div class="btn-container">
+        <a href="../pages/bmi-calc.html" class="btn">
+            Go to BMI Calculator
+        </a>
+    </div>
+
+</div>
+
+<footer>
+    <p>© 2026 BMI Dashboard | Health Awareness</p>
+</footer>
+
+</body>
+</html>

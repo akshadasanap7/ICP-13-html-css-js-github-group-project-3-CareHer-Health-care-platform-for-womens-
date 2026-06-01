@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PCOS Risk Quiz | CareHer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
+:root{
+  --primary:#d63384;
+  --secondary:#ff6fae;
+  --bg:#fff0f6;
+  --card:#ffffff;
+  --text:#333;
+}
+body.dark{
+  --primary:#ff6fae;
+  --secondary:#ff9ccc;
+  --bg:#1e1e1e;
+  --card:#2c2c2c;
+  --text:#eee;
+}
+body{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  background:var(--bg);
+  color:var(--text);
+  transition:.3s;
+}
+
+
+.card{
+  flex-shrink:0;
+}
+
+#themeBtn{
+  position:fixed; top:15px; right:15px; width:40px; height:40px;
+  border-radius:50%; border:none; background:var(--primary);
+  color:white; cursor:pointer; font-size:18px; z-index:1000;
+}
+.card{
+  width:100%; max-width:380px; margin:90px auto 40px;
+  background:var(--card); padding:25px; border-radius:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,.2); text-align:center;
+}
+.sub{font-size:14px;opacity:.7}
+.progress{height:8px;background:#ddd;border-radius:10px;overflow:hidden;margin:15px 0;}
+#bar{height:100%; width:0%; background:linear-gradient(to right,var(--primary),var(--secondary)); transition:.4s;}
+.game-options button{
+  width:100%; margin:6px 0; padding:12px; border:none; border-radius:25px;
+  cursor:pointer; background:var(--primary); color:white; font-size:15px;
+}
+.game-options .mid{background:var(--secondary);}
+.game-options .secondary{background:#ddd;color:#333;}
+.hidden{display:none;}
+#badge{display:inline-block;padding:6px 14px;border-radius:20px;margin:10px 0;}
+.low{background:#e8f5e9;color:green;}
+.medium{background:#fff3e0;color:#ff9800;}
+.high{background:#fdecea;color:red;}
+ul{text-align:left;font-size:14px;margin-top:10px;}
+.actions{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px;}
+.actions button{padding:10px;border:none;border-radius:20px;background:var(--primary);color:white;font-size:13px;cursor:pointer;}
+.restart{margin-top:12px;width:100%;padding:10px;border:none;border-radius:15px;background:var(--secondary);color:white;}
+
+.footer{
+  width:100%;
+  background:#ffe6f2;
+  margin-top:auto;
+}
+
+.footer-wrapper{
+  max-width:1200px;  
+  margin:auto;
+  padding:28px 40px 14px;
+}
+
+.footer-content{
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items:center;
+}
+
+
+.footer-left h3{
+  color:#d63384;
+  font-size:22px;
+  margin-bottom:6px;
+}
+.footer-left p{
+  font-size:14px;
+  color:#a83a6a;
+}
+
+
+.footer-center{
+  text-align:center;
+}
+.footer-center a{
+  margin:0 12px;
+  text-decoration:none;
+  color:#d63384;
+  font-weight:600;
+  font-size:14px;
+}
+.footer-center a:hover{
+  color:#ea1068;
+}
+
+
+.footer-right{
+  text-align:right;
+  font-size:14px;
+  color:#d63384;
+  font-weight:500;
+}
+
+
+.footer-bottom{
+  text-align:center;
+  margin-top:16px;
+  font-size:13px;
+  color:#a83a6a;
+  border-top:1px solid #f2b6d8;
+  padding-top:10px;
+}
+
+
+body.dark .footer{
+  background:#121212;
+}
+body.dark .footer *{
+  color:#ff9fcf;
+}
+body.dark .footer-bottom{
+  border-top:1px solid #2a2a2a;
+}
+
+
+@media(max-width:768px){
+  .footer-content{
+    grid-template-columns:1fr;
+    gap:12px;
+    text-align:center;
+  }
+  .footer-right{
+    text-align:center;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<button id="themeBtn">🌙</button>
+
+<div class="card">
+  <h2>🌸 PCOS Risk Quiz</h2>
+  <p class="sub">Answer honestly to understand your hormonal health</p>
+
+  <div class="progress"><div id="bar"></div></div>
+  <p id="levelText"></p>
+
+  <h3 id="question"></h3>
+
+  <div class="game-options">
+    <button onclick="answer(2)">✔ Yes</button>
+    <button class="mid" onclick="answer(1)">➖ Sometimes</button>
+    <button class="secondary" onclick="answer(0)">✖ No</button>
+  </div>
+
+  <div id="resultBox" class="hidden">
+    <h2 id="resultTitle"></h2>
+    <span id="badge"></span>
+    <p id="scoreText"></p>
+    <ul id="steps"></ul>
+
+    <div class="actions">
+      <button onclick="openProducts()">🛍 Products</button>
+      <button onclick="openDoctor()">👩‍⚕️ Doctor</button>
+      <button onclick="openDiet()">🥗 Diet</button>
+    </div>
+
+    <button class="restart" onclick="restartQuiz()">🔁 Restart</button>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-wrapper">
+    <div class="footer-content">
+
+      <div class="footer-left">
+        <h3>CareHer</h3>
+        <p>Women’s healthcare platform</p>
+      </div>
+
+      <div class="footer-center">
+        <a href="index.html">Home</a>
+        <a href="healthcheck.html">Health Check</a>
+        <a href="exercise.html">Exercise</a>
+        <a href="contact.html">Contact</a>
+        <a href="review.html">Reviews</a>
+      </div>
+
+      <div class="footer-right">
+        💗 Your health, our priority
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      © 2026 CareHer. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+
+<script>
+const themeBtn=document.getElementById("themeBtn");
+if(localStorage.getItem("theme")==="dark"){document.body.classList.add("dark");themeBtn.innerText="☀️";}
+themeBtn.onclick=()=>{
+  document.body.classList.toggle("dark");
+  localStorage.setItem("theme",document.body.classList.contains("dark")?"dark":"light");
+  themeBtn.innerText=document.body.classList.contains("dark")?"☀️":"🌙";
+};
+
+const questions=[
+  "Do you have irregular periods?",
+  "Do you have excess facial or body hair?",
+  "Do you have acne or oily skin?",
+  "Do you experience weight gain around the abdomen?",
+  "Do you notice hair thinning or hair fall?",
+  "Do you experience mood swings or irritability?",
+  "Do you have cravings for sugary foods?",
+  "Do you have low energy or fatigue?",
+  "Do you have insulin resistance or high blood sugar?",
+  "Is there a family history of PCOS?"
+];
+
+let index=0, score=0;
+const q=document.getElementById("question");
+const bar=document.getElementById("bar");
+const level=document.getElementById("levelText");
+
+function loadQuestion(){
+  q.innerText=questions[index];
+  level.innerText=`Question ${index+1} of ${questions.length}`;
+  bar.style.width=(index/questions.length)*100+"%";
+}
+loadQuestion();
+
+function answer(val){
+  score+=val;
+  index++;
+  index<questions.length?loadQuestion():showResult();
+}
+
+function showResult(){
+  document.querySelector(".game-options").style.display="none";
+  q.style.display="none";
+  level.style.display="none";
+  bar.style.width="100%";
+
+  let title,badge,cls,steps;
+  if(score<=8){title="🟢 Low Risk";badge="LOW";cls="low";steps=["Balanced diet","Regular exercise","Cycle tracking"];}
+  else if(score<=16){title="🟡 Moderate Risk";badge="MEDIUM";cls="medium";steps=["Reduce sugar","Stress management","Healthy routine"];}
+  else{title="🔴 High Risk";badge="HIGH";cls="high";steps=["Consult doctor","Hormone tests","Medical guidance"];}
+
+  document.getElementById("resultTitle").innerText=title;
+  document.getElementById("scoreText").innerText="Score: "+score;
+  const b=document.getElementById("badge");
+  b.innerText=badge;
+  b.className=""; // clear previous classes
+  b.classList.add(cls);
+
+  const s=document.getElementById("steps");
+  s.innerHTML="";
+  steps.forEach(i=>s.innerHTML+=`<li>✔ ${i}</li>`);
+
+  document.getElementById("resultBox").classList.remove("hidden");
+}
+
+function restartQuiz(){location.reload();}
+function openProducts(){location.href="pcos-products.html";}
+function openDoctor(){location.href="pcos-doctor.html";}
+function openDiet(){location.href="pcos-diet-lifestyle.html";}
+</script>
+
+</body>
+</html>

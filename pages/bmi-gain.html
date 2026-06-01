@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Weight Gain Products for Women</title>
+<link rel="stylesheet" href="../css/bmi-gain.css"/>
+<script src="../js/bmi-gain.js" defer></script>
+
+</head>
+
+<body>
+
+<header>
+<h1>Weight Gain Products</h1>
+<p>Healthy Weight Gain for Women</p>
+<div class="cart-icon" onclick="toggleCart()">🛒 Cart (<span id="cartCount">0</span>)</div>
+</header>
+
+<div class="container">
+<div class="products">
+
+<!-- PRODUCT 1 -->
+<div class="product">
+<img src="../images/gain-p1.jpg">
+<h3>Orgain Organic Protein</h3>
+<p>High-protein shake for healthy weight gain.</p>
+<div class="price">$29.99</div>
+<button class="btn cart-btn" onclick="addToCart('Orgain Protein',29.99)">Add to Cart</button>
+<a class="btn amazon-btn" href="https://www.amazon.com/dp/B00J074W94" target="_blank">Buy on Amazon</a>
+</div>
+
+<!-- PRODUCT 2 -->
+<div class="product">
+<img src="../images/gain-p2.jpg">
+<h3>Optimum Nutrition Mass</h3>
+<p>High-calorie mass gainer with protein.</p>
+<div class="price">$49.99</div>
+<button class="btn cart-btn" onclick="addToCart('Serious Mass',49.99)">Add to Cart</button>
+<a class="btn amazon-btn" href="https://www.amazon.com/dp/B000GIPJ0K" target="_blank">Buy on Amazon</a>
+</div>
+
+<!-- PRODUCT 3 -->
+<div class="product">
+<img src="../images/gain-p3.jpg">
+<h3>Ensure Plus Nutrition Shake</h3>
+<p>Calorie-rich nutrition drink for mass gain.</p>
+<div class="price">$34.99</div>
+<button class="btn cart-btn" onclick="addToCart('Ensure Plus',34.99)">Add to Cart</button>
+<a class="btn amazon-btn" href="https://www.amazon.com/dp/B00GJYFJQ6" target="_blank">Buy on Amazon</a>
+</div>
+
+<!-- PRODUCT 4 -->
+<div class="product">
+<img src="../images/gain-p4.jpg">
+<h3>Atkins Protein Bars</h3>
+<p>Protein-packed snacks for weight gain.</p>
+<div class="price">$24.99</div>
+<button class="btn cart-btn" onclick="addToCart('Atkins Protein Bars',24.99)">Add to Cart</button>
+<a class="btn amazon-btn" href="https://www.amazon.com/dp/B01M0L9B1G" target="_blank">Buy on Amazon</a>
+</div>
+
+<!-- PRODUCT 5 -->
+<div class="product">
+<img src="../images/gain-p5.jpg">
+<h3>Peanut Butter Powder</h3>
+<p>Healthy fats & calories for mass gain.</p>
+<div class="price">$16.99</div>
+<button class="btn cart-btn" onclick="addToCart('Peanut Butter Powder',16.99)">Add to Cart</button>
+<a class="btn amazon-btn" href="https://www.amazon.com/dp/B00D3C9JKK" target="_blank">Buy on Amazon</a>
+</div>
+
+<!-- PRODUCT 6 -->
+<div class="product">
+<img src="../images/gain-p6.jpg">
+<h3>Weight Gainer Capsules</h3>
+<p>Supports appetite & healthy weight gain.</p>
+<div class="price">$27.99</div>
+<button class="btn cart-btn" onclick="addToCart('Weight Gainer Capsules',27.99)">Add to Cart</button>
+<a class="btn amazon-btn" href="https://www.amazon.com/dp/B07F2L6ZLW" target="_blank">Buy on Amazon</a>
+</div>
+
+</div>
+</div>
+
+<!-- CART MODAL -->
+<div class="cart-modal" id="cartModal">
+<div class="cart-content">
+<h3>Your Cart</h3>
+<ul id="cartItems"></ul>
+<p><strong>Total: $<span id="cartTotal">0.00</span></strong></p>
+<button onclick="toggleCart()">Close</button>
+</div>
+</div>
+
+<footer>
+<p>© 2026 Careher womens healthcare platform</p>
+</footer>
+
+<script>
+let cart = [];
+
+function addToCart(name, price) {
+    cart.push({name, price});
+    updateCart();
+}
+
+function removeItem(index) {
+    cart.splice(index, 1);
+    updateCart();
+}
+
+function updateCart() {
+    const list = document.getElementById('cartItems');
+    const count = document.getElementById('cartCount');
+    const totalEl = document.getElementById('cartTotal');
+
+    list.innerHTML = '';
+    let total = 0;
+
+    cart.forEach((item, index) => {
+        total += item.price;
+        const li = document.createElement('li');
+        li.innerHTML = `
+            ${item.name} - $${item.price}
+            <span class="remove-btn" onclick="removeItem(${index})">❌</span>
+        `;
+        list.appendChild(li);
+    });
+
+    count.innerText = cart.length;
+    totalEl.innerText = total.toFixed(2);
+}
+
+function toggleCart() {
+    const modal = document.getElementById('cartModal');
+    modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
+}
+</script>
+
+</body>
+</html>

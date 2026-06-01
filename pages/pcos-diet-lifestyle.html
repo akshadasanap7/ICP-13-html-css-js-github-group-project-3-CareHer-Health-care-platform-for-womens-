@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Healthy Lifestyle for PCOS | Care Her</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --primary:#d63384;
+  --secondary:#ff6fae;
+  --bg:#fff0f6;
+  --card:#ffffff;
+  --text:#333;
+}
+body.dark{
+  --primary:#ff6fae;
+  --secondary:#ff9ccc;
+  --bg:#1e1e1e;
+  --card:#2c2c2c;
+  --text:#eee;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Roboto',sans-serif;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  transition:.3s;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  padding: 14px 50px;
+  background-color: #ffbfec;
+}
+.nav-logo { width:60px;height:60px;border-radius:50%;border:3px solid #d85590;object-fit:cover; }
+.nav-name { font-size:28px;font-weight:700;color:#c93779;margin-left:12px; }
+.menu { display:flex;gap:30px;margin-left:auto;align-items:center; }
+.menu a { text-decoration:none;font-size:20px;font-weight:700;color:#d85590;transition:0.3s; }
+.menu a:hover { color:#ea1068; }
+.menu img { width:36px;height:36px;border-radius:50%;border:2px solid #c93779;cursor:pointer; }
+.nav-clock { display:flex;flex-direction:column;font-size:13px;font-weight:600;color:#c93779;margin-left:14px;line-height:1.3; }
+#dateSpan{ font-size:13px; } 
+#timeSpan{ font-size:14px;font-weight:700;color:#a81f5a; }
+.theme-toggle { border:none;background:white;color:#c93779;font-size:18px;padding:8px 12px;border-radius:50%;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.2);transition:.3s; }
+
+/* ===== CONTENT ===== */
+.lifestyle-card{ max-width:900px;margin:120px auto 40px;padding:30px;background:var(--card);border-radius:20px;box-shadow:0 20px 45px rgba(0,0,0,.15); }
+h2{text-align:center;color:var(--primary);}
+.intro{text-align:center;margin-bottom:30px;opacity:.85;}
+.section{margin-bottom:35px;opacity:0;transform:translateY(30px);transition:all 0.8s ease;}
+.section.active{opacity:1;transform:translateY(0);}
+.section-head{display:flex;align-items:center;gap:12px;margin-bottom:15px;}
+.section-head img{width:45px;}
+.checklist{list-style:none;padding-left:0;}
+.checklist li{
+  background:#f8f8f8;
+  padding:12px;
+  border-radius:12px;
+  margin:8px 0;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  cursor:pointer;
+  transition: transform 0.25s, background 0.3s;
+}
+.checklist li:hover{transform:translateX(5px);background:linear-gradient(135deg, #ffd6e8, #ffc0da);}
+.checklist li input:checked + span{text-decoration:line-through;color:#a81f5a;}
+body.dark .checklist li{background:#3c3c3c;}
+
+.food-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:15px; margin-bottom:20px; }
+.food-card{ background:#fff; padding:15px; border-radius:15px; text-align:center; cursor:pointer; transition:.3s; }
+.food-card:hover{transform:translateY(-6px) scale(1.05);box-shadow:0 18px 50px rgba(234,16,104,0.25);}
+body.dark .food-card{background:#3a3a3a;}
+.food-card img{width:60px;}
+
+.routine-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:12px; }
+.box{ background:linear-gradient(135deg,var(--primary),var(--secondary)); color:white; padding:15px; border-radius:12px; text-align:center; cursor:pointer; transition:.3s; }
+.box:hover{transform:translateY(-6px) scale(1.05);box-shadow:0 18px 50px rgba(234,16,104,0.25);}
+
+.progress-box{text-align:center;margin-top:40px;}
+.progress-bar{ width:100%;height:12px;background:#ddd;border-radius:10px;overflow:hidden;margin:10px 0; }
+#lifeBar{ height:100%; width:0%; background:linear-gradient(135deg,var(--primary),var(--secondary)); transition:.4s; }
+.progress-box button{ padding:10px 22px;border:none;border-radius:12px;background:linear-gradient(135deg,var(--primary),var(--secondary));color:white;cursor:pointer;transition:.3s; }
+.progress-box button:hover{ transform:scale(1.05);box-shadow:0 8px 22px rgba(234,16,104,0.35); }
+
+/* ===== FOOTER ===== */
+.footer { background:#ffe6f2; padding:30px 50px 10px; color:#c93779;margin-top:40px;}
+.footer-content { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; }
+.footer-left h3{ font-size:18px;margin-bottom:5px; }
+.footer-left p{ font-size:14px;color:#a83a6a; }
+.footer-center a{ margin:0 12px;text-decoration:none;color:#c93779;font-weight:500;}
+.footer-center a:hover{ color:#ea1068; }
+.footer-right{ display:flex;align-items:center;font-size:14px; }
+.footer-right .heart{ margin-right:6px; }
+.footer-bottom{ text-align:center;margin-top:20px;font-size:13px;color:#a83a6a;border-top:1px solid #f2b6d8;padding-top:10px; }
+
+/* ===== DARK MODE ===== */
+body.dark .navbar{ background:#121212; }
+body.dark .nav-name, body.dark .menu a, body.dark .nav-clock{ color:#ff9fcf; }
+body.dark .menu a:hover{ color:#ff5fa2; }
+body.dark .theme-toggle{ background:#000;color:white; }
+body.dark .footer{ background:#121212;color:#ff9fcf; }
+body.dark .footer-left h3{ color:#ff8fc4; }
+body.dark .footer-left p{ color:#d9a3bd; }
+body.dark .footer-center a{ color:#ff9fcf; }
+body.dark .footer-center a:hover{ color:#ff5fa2; }
+body.dark .footer-right{ color:#ffb3d9; }
+body.dark .footer-right .heart{ color:#ff5fa2; }
+body.dark .footer-bottom{ color:#cfa0b6;border-top:1px solid #2a2a2a; }
+</style>
+</head>
+
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar">
+  <div class="nav-left">
+    <img src="../images/logo.png" class="nav-logo" alt="Logo">
+    <span class="nav-name">Care Her</span>
+  </div>
+  <div class="menu">
+    <a href="index.html">Home</a>
+    <a href="healthCheck.html">Health Check</a>
+    <a href="exercise.html">Exercise</a>
+    <a href="contact.html">Contact</a>
+    <a href="signup.html"><img src="../images/woman.png" alt="Sign Up"></a>
+    <div class="nav-clock">
+      <span id="dateSpan"></span><br>
+      <span id="timeSpan"></span>
+    </div>
+    <button class="theme-toggle" id="themeBtn">🌙</button>
+  </div>
+</nav>
+
+<!-- ===== CONTENT ===== -->
+<section class="lifestyle-card">
+<h2>🌸 Healthy Lifestyle for PCOS</h2>
+<p class="intro home-para">PCOS (Polycystic Ovary Syndrome) can be managed with consistent lifestyle habits 💗</p>
+
+<!-- DIET -->
+<div class="section">
+  <div class="section-head">
+    <img src="../images/image.png" alt="Diet">
+    <h3>🥗 PCOS-Friendly Diet</h3>
+  </div>
+  <div class="food-grid">
+    <div class="food-card"><img src="../images/fruit.png" alt="Fruits"><p>Low-GI Fruits</p></div>
+    <div class="food-card"><img src="../images/vegetables.png" alt="Vegetables"><p>Leafy Vegetables</p></div>
+    <div class="food-card"><img src="../images/grains.png" alt="Grains"><p>Whole Grains</p></div>
+    <div class="food-card"><img src="../images/nuts.png" alt="Nuts"><p>Nuts & Seeds</p></div>
+  </div>
+  <ul class="checklist">
+    <li><input type="checkbox" class="habit"><span>Control insulin spikes</span></li>
+    <li><input type="checkbox" class="habit"><span>Reduce junk & oily food</span></li>
+    <li><input type="checkbox" class="habit"><span>High-fiber balanced meals</span></li>
+    <li><input type="checkbox" class="habit"><span>Healthy fats (omega-3)</span></li>
+    <li><input type="checkbox" class="habit"><span>Adequate water intake</span></li>
+  </ul>
+</div>
+
+<!-- EXERCISE -->
+<div class="section">
+  <div class="section-head">
+    <img src="../images/exercise.png" alt="Exercise">
+    <h3>🏃 Physical Activity for PCOS</h3>
+  </div>
+  <ul class="checklist">
+    <li><input type="checkbox" class="habit"><span>Brisk walking (30 mins)</span></li>
+    <li><input type="checkbox" class="habit"><span>Yoga & stretching</span></li>
+    <li><input type="checkbox" class="habit"><span>Light strength training</span></li>
+  </ul>
+</div>
+
+<!-- SLEEP & STRESS -->
+<div class="section">
+  <div class="section-head">
+    <img src="../images/sleep.png" alt="Sleep">
+    <h3>😴 Hormonal Balance & Stress</h3>
+  </div>
+  <ul class="checklist">
+    <li><input type="checkbox" class="habit"><span>7–8 hours quality sleep</span></li>
+    <li><input type="checkbox" class="habit"><span>Stress management</span></li>
+    <li><input type="checkbox" class="habit"><span>Limit screen exposure</span></li>
+  </ul>
+</div>
+
+<!-- DAILY ROUTINE -->
+<div class="section">
+  <h3>🕒 Daily PCOS Routine</h3>
+  <div class="routine-grid">
+    <div class="box">🌅 Early Wake-up</div>
+    <div class="box">🥗 Timely Meals</div>
+    <div class="box">🧘 Hormone-friendly Yoga</div>
+    <div class="box">💧 Hydration</div>
+    <div class="box">😴 Proper Sleep</div>
+    <div class="box">🚶 Stay Active</div>
+    <div class="box">😉 Feel Happy</div>
+    <div class="box">💁‍♀️ Walk Periodically</div>
+  </div>
+</div>
+
+<!-- PROGRESS -->
+<div class="progress-box section">
+  <h3>📊 My PCOS Lifestyle Progress</h3>
+  <p id="progressText">0% Habits Completed</p>
+  <div class="progress-bar"><div id="lifeBar"></div></div>
+  <button onclick="calculateProgress()">Check My Progress</button>
+</div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-left">
+      <h3>CareHer</h3>
+      <p>Women's health care platform</p>
+    </div>
+    <div class="footer-center">
+      <a href="index.html">Home</a>
+      <a href="healthcheck.html">Health Check</a>
+      <a href="exercise.html">Exercise</a>
+      <a href="contact.html">Contact</a>
+      <a href="review.html">Reviews</a>
+    </div>
+    <div class="footer-right">
+      <span class="heart">💗</span>
+      <span>Your health, our priority</span>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © Care Her. All rights reserved.
+  </div>
+</footer>
+
+<script>
+// ===== CLOCK =====
+const dateSpan = document.getElementById("dateSpan");
+const timeSpan = document.getElementById("timeSpan");
+function updateClock(){
+  const now=new Date();
+  dateSpan.innerText=now.toDateString();
+  timeSpan.innerText=now.toLocaleTimeString();
+}
+setInterval(updateClock,1000);
+updateClock();
+
+// ===== THEME TOGGLE =====
+const themeBtn = document.getElementById("themeBtn");
+themeBtn.onclick = () => {
+  document.body.classList.toggle("dark");
+  localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
+};
+if(localStorage.getItem("theme")==="dark"){document.body.classList.add("dark");}
+
+// ===== SCROLL REVEAL =====
+const scrollElements = document.querySelectorAll(".section, .home-para");
+const elementInView = (el, dividend=1) => el.getBoundingClientRect().top <= window.innerHeight / dividend;
+const displayScrollElement = el => el.classList.add("active");
+const hideScrollElement = el => el.classList.remove("active");
+const handleScrollAnimation = () => scrollElements.forEach(el => elementInView(el,1.25)?displayScrollElement(el):hideScrollElement(el));
+window.addEventListener("scroll", handleScrollAnimation);
+handleScrollAnimation();
+
+// ===== HABIT PROGRESS =====
+const habits = document.querySelectorAll(".habit");
+habits.forEach(h=>h.addEventListener("change", calculateProgress));
+function calculateProgress(){
+  const done=[...habits].filter(h=>h.checked).length;
+  const percent=Math.round((done/habits.length)*100);
+  document.getElementById("lifeBar").style.width=percent+"%";
+  document.getElementById("progressText").innerText=percent+"% Habits Completed";
+}
+</script>
+
+</body>
+</html>

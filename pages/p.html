@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CareHer | PCOD & PCOS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
+
+
+:root{
+  --primary:#d63384;
+  --secondary:#ff6fae;
+  --bg:#fff0f6;
+  --card:#ffffff;
+  --text:#333;
+}
+body.dark{
+  --primary:#ff6fae;
+  --secondary:#ff9ccc;
+  --bg:#1e1e1e;
+  --card:#2c2c2c;
+  --text:#eee;
+}
+
+
+body{
+  background:linear-gradient(135deg,var(--bg),#ffffff);
+  color:var(--text);
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  transition:0.3s;
+  padding-top:88px;
+}
+body.dark{
+  background:linear-gradient(135deg,var(--primary),var(--bg));
+}
+
+
+.navbar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:1000;
+  display:flex;
+  align-items:center;
+  padding:14px 50px;
+  background:#ffbfec;
+}
+
+.nav-left{
+  display:flex;
+  align-items:center;
+}
+
+.nav-logo{
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  object-fit:cover;
+  border:3px solid #d85590;
+}
+
+.nav-name{
+  font-size:28px;
+  font-weight:700;
+  color:#c93779;
+  margin-left:12px;
+}
+
+.menu{
+  display:flex;
+  align-items:center;
+  gap:28px;
+  margin-left:auto;
+}
+
+.menu a{
+  text-decoration:none;
+  font-size:18px;
+  font-weight:700;
+  color:#d85590;
+  transition:0.3s;
+}
+.menu a:hover{color:#ea1068;}
+
+.menu img{
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  border:2px solid #c93779;
+}
+
+
+.nav-clock{
+  display:flex;
+  flex-direction:column;
+  font-size:13px;
+  font-weight:600;
+  color:#c93779;
+  line-height:1.2;
+}
+
+
+.theme-toggle{
+  border:none;
+  background:white;
+  color:#c93779;
+  font-size:18px;
+  padding:8px 12px;
+  border-radius:50%;
+  cursor:pointer;
+  box-shadow:0 2px 8px rgba(0,0,0,0.2);
+}
+
+
+.main{
+  flex:1;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:80px 20px;
+}
+
+.flex-box{
+  display:flex;
+  gap:40px;
+  flex-wrap:wrap;
+}
+
+
+.health-btn{
+  width:260px;
+  height:220px;
+  background:var(--card);
+  border-radius:22px;
+  box-shadow:0 15px 35px rgba(0,0,0,0.15);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  cursor:pointer;
+  transition:0.4s;
+  text-align:center;
+  border:2px solid transparent;
+}
+
+.health-btn:hover{
+  transform:translateY(-10px) scale(1.05);
+  box-shadow:0 25px 45px rgba(0,0,0,0.25);
+  border-color:var(--primary);
+}
+
+.health-btn .icon{font-size:48px;margin-bottom:15px;}
+.health-btn h2{color:var(--primary);margin-bottom:8px;}
+.health-btn p{font-size:14px;opacity:0.8;}
+
+
+.footer{
+  width:100%;
+  background:#ffe6f2;
+  padding:25px 20px;
+}
+.footer-content{
+  max-width:1100px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:15px;
+}
+.footer-left h3{color:#c93779;}
+.footer-left p{font-size:14px;color:#a83a6a;}
+
+.footer-center a{
+  margin:0 8px;
+  text-decoration:none;
+  color:#c93779;
+  font-weight:500;
+  font-size:14px;
+}
+.footer-center a:hover{color:#ea1068;}
+
+.footer-right{font-size:14px;color:#c93779;}
+
+.footer-bottom{
+  text-align:center;
+  margin-top:15px;
+  font-size:13px;
+  color:#a83a6a;
+  border-top:1px solid #f2b6d8;
+  padding-top:10px;
+}
+
+body.dark .navbar{background:#121212;}
+body.dark .nav-name,
+body.dark .menu a,
+body.dark .nav-clock{color:#ff9fcf;}
+body.dark .menu a:hover{color:#ff5fa2;}
+body.dark .footer{background:#121212;}
+body.dark .footer *{color:#ff9fcf;}
+body.dark .footer-bottom{border-top:1px solid #2a2a2a;}
+body.dark .theme-toggle{background:#000;color:white;}
+
+
+@media(max-width:600px){
+  .flex-box{flex-direction:column;}
+  .menu{gap:16px;}
+}
+</style>
+</head>
+
+<body>
+
+
+<nav class="navbar">
+  <div class="nav-left">
+    <img src="../images/logo.png" class="nav-logo">
+    <span class="nav-name">Care Her</span>
+  </div>
+
+  <div class="menu">
+    <a href="index.html">Home</a>
+    <a href="healthCheck.html">Health Check</a>
+    <a href="exercise.html">Exercise</a>
+    <a href="contact.html">Contact</a>
+    <a href="review.html">Reviews</a>
+
+    <a href="signup.html">
+      <img src="../images/woman.png">
+    </a>
+
+    <div class="nav-clock">
+      <span id="dateSpan"></span>
+      <span id="timeSpan"></span>
+    </div>
+
+    <button class="theme-toggle" id="themeToggle">🌙</button>
+  </div>
+</nav>
+
+<section class="main">
+  <div class="flex-box">
+
+    <div class="health-btn" onclick="goPCOD()">
+      <div class="icon">🌸</div>
+      <h2>PCOD</h2>
+      <p>Polycystic Ovarian Disease</p>
+    </div>
+
+    <div class="health-btn" onclick="goPCOS()">
+      <div class="icon">🩺</div>
+      <h2>PCOS</h2>
+      <p>Polycystic Ovary Syndrome</p>
+    </div>
+
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-left">
+      <h3>CareHer</h3>
+      <p>Women’s healthcare platform</p>
+    </div>
+
+    <div class="footer-center">
+      <a href="index.html">Home</a>
+      <a href="healthcheck.html">Health Check</a>
+      <a href="exercise.html">Exercise</a>
+      <a href="contact.html">Contact</a>
+      <a href="review.html">Reviews</a>
+      
+    </div>
+
+    <div class="footer-right">
+      💗 Your health, our priority
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 CareHer. All rights reserved.
+  </div>
+</footer>
+
+<script>
+
+function updateClock(){
+  const now = new Date();
+  document.getElementById("dateSpan").innerText = now.toDateString();
+  document.getElementById("timeSpan").innerText = now.toLocaleTimeString();
+}
+setInterval(updateClock,1000);
+updateClock();
+
+
+const themeToggle = document.getElementById("themeToggle");
+
+if(localStorage.getItem("theme")==="dark"){
+  document.body.classList.add("dark");
+  themeToggle.textContent="☀️";
+}
+
+themeToggle.onclick=()=>{
+  document.body.classList.toggle("dark");
+  localStorage.setItem("theme",
+    document.body.classList.contains("dark")?"dark":"light");
+  themeToggle.textContent =
+    document.body.classList.contains("dark")?"☀️":"🌙";
+};
+
+
+function goPCOD(){
+  window.location.href="pcod-about.html";
+}
+function goPCOS(){
+  window.location.href="pcos-about.html";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,149 @@
+:root{
+  --pink:#a53860;
+  --light:#fde4ec;
+  --white:#fff;
+  --dark:#333;
+}
+
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:var(--light);
+}
+
+/* HEADER */
+header{
+  background:var(--pink);
+  color:white;
+  padding:25px;
+  text-align:center;
+}
+
+/* CARD */
+.card{
+  background:var(--white);
+  max-width:600px;
+  margin:40px auto;
+  padding:30px;
+  border-radius:18px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* HEADINGS */
+h2{
+  color:var(--pink);
+}
+
+/* FORM */
+#appointmentForm{
+  display:flex;
+  flex-direction:column;
+}
+
+/* LABELS */
+label{
+  display:block;
+  margin-top:12px;
+  font-weight:bold;
+}
+
+/* INPUTS */
+input, select, textarea{
+  width:100%;
+  padding:10px;
+  margin-top:6px;
+  border-radius:8px;
+  border:1px solid #ccc;
+  box-sizing:border-box;
+}
+
+/* CHECKBOX */
+.checkbox-group{
+  margin-top:8px;
+}
+
+.checkbox-group label{
+  display:block;
+  font-weight:normal;
+}
+
+/* ✅ BUTTON FIXED (BOTTOM + CENTER) */
+#appointmentForm button{
+  margin-top:30px;
+  align-self:bottom;          /* center horizontally */
+  padding:12px 35px;
+  background:var(--pink);
+  color:white;
+  border:none;
+  border-radius:25px;
+  font-size:16px;
+  cursor:pointer;
+}
+
+#appointmentForm button:hover{
+  opacity:0.9;
+}
+
+/* NOTE */
+.note{
+  font-size:13px;
+  color:#666;
+  margin-top:15px;
+  text-align:center;
+}
+
+/* SUCCESS MESSAGE */
+.success{
+  margin-top:15px;
+  background:#e8f5e9;
+  padding:12px;
+  border-radius:10px;
+  color:green;
+  text-align:center;
+}
+
+.hidden{
+  display:none;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:20px;
+  background:white;
+}
+.progress-box{
+  text-align:center;
+}
+
+/* Check My Progress */
+.check-btn{
+  margin-top:20px;
+  padding:12px 28px;
+  background:#a53860;
+  color:white;
+  border:none;
+  border-radius:25px;
+  font-size:15px;
+  cursor:pointer;
+}
+
+.appointment-section{
+  text-align:center;
+  margin: 30px 0 50px;
+}
+
+.appointment-btn{
+  padding:14px 32px;
+  background:#a53860;
+  color:white;
+  border:none;
+  border-radius:30px;
+  font-size:16px;
+  cursor:pointer;
+  box-shadow:0 8px 18px rgba(0,0,0,0.15);
+}
+
+.appointment-btn:hover{
+  opacity:0.9;
+}

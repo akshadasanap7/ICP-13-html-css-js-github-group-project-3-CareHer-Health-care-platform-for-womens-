@@ -1,0 +1,208 @@
+ body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f7f9fc;
+            color: #333;
+        }
+        h1 {
+            margin-top: 0;
+            font-size: 2.4rem;
+            color: #a53860;
+            margin-bottom: 0.5rem;
+            padding-top: 10px;
+            text-align:center
+        }
+        .subtitle {
+            color: #7a2146;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            text-align: center;
+
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 30px;
+        }
+        h2 {
+            color: #e75480;
+            margin-bottom: 20px;
+        }
+
+        .doctor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .doctor-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .doctor-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 12px;
+        }
+
+        .doctor-card h3 {
+            margin-top: 0;
+            color: #c2185b;
+        }
+
+        .doctor-card p {
+            font-size: 14px;
+            margin: 6px 0;
+            color:  #5c1b34;
+        }
+
+        .map-container {
+            margin-top: 30px;
+            width: 100%;
+            height: 300px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .contact-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            margin-top: 30px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background: #e9ecef;
+            margin-top: 40px;
+        }
+
+        /*navbar*/
+        .body {
+              background-color: #fff7fb;
+              padding-top: 88px;
+              }
+
+        .navbar {
+             position: fixed;
+             top: 0;
+             left: 0;
+             width: 100%;
+             z-index: 1000;
+
+             display: flex;
+             align-items: center;
+             padding: 14px 50px;
+             background-color: #ffbfec;
+        }
+        .nav-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #d85590;
+        }
+
+        .nav-name {
+            font-size: 28px;
+            font-weight: 700;
+            color: #c93779;
+            margin-left: 12px;
+        }
+
+        .menu {
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              gap: 30px;
+              margin-left: auto;
+             }
+
+.menu a {
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 700;
+  color: #d85590;
+  transition: 0.3s ease;
+}
+
+.menu a:hover {
+  color: #ea1068;
+  transition: 0.3s ease;
+}
+
+.menu img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #c93779;
+  cursor: pointer;
+}
+/* ===== Clock in Navbar ===== */
+.nav-clock {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #c93779;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+#dateSpan {
+  font-size: 13px;
+}
+
+#timeSpan {
+  font-size: 14px;
+  font-weight: 700;
+  color: #a81f5a;
+}
+.toggle-btn{
+  display: block;
+  font-size: 16px;
+  background-color:#ffbfec;
+  color: #d85590;
+  border: 2px solid #d85590;
+  border-radius: 5px; ;
+  cursor: pointer;
+  transition: 0.3s;
+  padding: 5px 7px;
+}
+    /* Dark mode */
+    
+    body.dark .doctor-grid {
+  background: #2a2a2a;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+}
+
+body.dark .doctor-grid::before {
+  background: linear-gradient(135deg, #3a3a3a, #2a2a2a);
+}
+
+body.dark .doctor-grid h3 {
+  color: #ff9fcf;
+}
+
+body.dark .doctor-grid p {
+  color: #e5b6cb;
+}
+
+@media (max-width: 600px) {
+    .product {
+        width: 100%;
+    }
+}

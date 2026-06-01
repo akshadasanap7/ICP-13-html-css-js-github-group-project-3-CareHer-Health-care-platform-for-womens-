@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact | Women's Health Care</title>
+    <link rel="stylesheet" href="../css/contact.css"/>
+    <link rel="stylesheet" href="../css/home.css">
+
+</head>
+
+<body class="body" id="body">
+
+<div class="navbar" id="navbar">
+    <img src="../images/logo.png" alt="logo" class="nav-logo"/>
+    <span class="nav-name">Care Her</span>
+
+    <div class="menu">
+        <a href="../index.html" class="menu-1">Home</a>
+        <a href="healthCheck.html" class="menu-1">Health Check</a>
+        <a href="exercise.html" class="menu-1">Exercise</a>
+        <a href="Contact.html" class="menu-1">Contact</a>
+        <a href="review.html" class="menu-1">Reviews</a>
+        <a href="signup.html" class="menu-1">
+            <img src="../images/woman.png" alt="login"/>
+        </a>
+
+        <div class="nav-clock">
+            <span id="dateSpan"></span>
+            <span id="timeSpan"></span>
+        </div>
+
+        <button class="toggle-btn" id="toggle-btn" onclick="toggleTheme()">☀️Dark</button>
+    </div>
+</div>
+
+<h1>Contact Us</h1>
+<p class="subtitle">Women’s Health Care & Medical Support</p>
+
+<div class="container">
+
+    <h2>Women Gynecologist Specialists</h2>
+
+    <div class="doctor-grid">
+
+        <div class="doctor-card">
+            <img src="../images/dr1.jpg" alt="Dr Anjali Sharma">
+            <h3>Dr. Anjali Sharma</h3>
+            <p><strong>Sunrise Women’s Hospital</strong></p>
+            <p>Green Park, New Delhi, India</p>
+
+            <div class="map-container">
+                <iframe width="100%" height="100%" frameborder="0" style="border:0"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14020.12348598482!2d77.2123!3d28.5691!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d03c9c2e8b861%3A0x11c8cd5cde7d9d5e!2sGreen+Park%2C+New+Delhi%2C+Delhi!5e0!3m2!1sen!2sin!4v1700000000000" 
+                         allowfullscreen="" loading="lazy"></iframe>           
+                         </div>
+                         </div>
+
+        <div class="doctor-card">
+            <img src="../images/dr2.jpg" alt="Dr Priya Mehta">
+            <h3>Dr. Priya Mehta</h3>
+            <p><strong>Lotus Mother & Child Hospital</strong></p>
+            <p>Andheri East, Mumbai, India</p>
+
+            <div class="map-container">
+                <iframe width="100%" height="100%" frameborder="0" style="border:0"
+                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3769.123651982345!2d72.8673!3d19.1196!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7ce4e8c43f123%3A0x9a7c7a22b9c15dfa!2sAndheri+East%2C+Mumbai%2C+Maharashtra!5e0!3m2!1sen!2sin!4v1700000000001" 
+                     allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+
+        <div class="doctor-card">
+            <img src="../images/dr3.jpg" alt="Dr Kavita Rao">
+            <h3>Dr. Kavita Rao</h3>
+            <p><strong>CarePlus Women Clinic</strong></p>
+            <p>Banjara Hills, Hyderabad, India</p>
+
+            <div class="map-container">
+                <iframe width="100%" height="100%" frameborder="0" style="border:0"
+                       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.24512398765!2d78.4644!3d17.3940!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb939eabf866b5%3A0xabcd1234567890ef!2sBanjara+Hills%2C+Hyderabad%2C+Telangana!5e0!3m2!1sen!2sin!4v1700000000002" 
+                       allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="contact-box">
+        <h2>Contact Details</h2>
+        <strong>Email:</strong>
+        <a href="mailto:akshadasanap465@gmail.com">womenshealthcare@gmail.com</a>
+        <p><strong>Phone:</strong> <a href="tel:7888287376">7888287376</a></p>
+        <p><strong>Working Hours:</strong> Mon – Sat | 9:00 AM – 6:00 PM</p>
+    </div>
+
+</div>
+
+<script>
+window.onload = function () {
+    const theme = localStorage.getItem("theme");
+    if (theme === "dark") {
+        toggleDark();
+    } else {
+        toggleLight();
+    }
+};
+
+function toggleTheme() {
+    const theme = localStorage.getItem("theme");
+    if (theme === "dark") {
+        toggleLight();
+        localStorage.setItem("theme", "light");
+        document.getElementById("toggle-btn").innerText = "☀️Dark";
+    } else {
+        toggleDark();
+        localStorage.setItem("theme", "dark");
+        document.getElementById("toggle-btn").innerText = "🌙Light";
+    }
+}
+
+function toggleDark() {
+    const body = document.getElementById("body");
+    const navbar = document.getElementById("navbar");
+    const toggleBtn = document.getElementById("toggle-btn");
+    const menu = document.getElementsByClassName("menu-1");
+
+    body.style.backgroundColor = "black";
+    body.style.color = "black";
+    navbar.style.backgroundColor = "#000000";
+
+    toggleBtn.style.backgroundColor = "black";
+    toggleBtn.style.border = "2px solid pink";
+    toggleBtn.style.color = "white";
+
+    for (let i = 0; i < menu.length; i++) {
+        menu[i].style.color = "white";
+    }
+}
+
+function toggleLight() {
+    const body = document.getElementById("body");
+    const navbar = document.getElementById("navbar");
+    const toggleBtn = document.getElementById("toggle-btn");
+    const menu = document.getElementsByClassName("menu-1");
+
+    body.style.backgroundColor = "#fff7fb";
+    body.style.color = "black";
+    navbar.style.backgroundColor = "#ffbfec";
+
+    toggleBtn.style.backgroundColor = "#ffbfec";
+    toggleBtn.style.border = "2px solid #d85590";
+    toggleBtn.style.color = "#d85590";
+
+    for (let i = 0; i < menu.length; i++) {
+        menu[i].style.color = "#d85590";
+    }
+}
+
+function updateClock() {
+    const dateSpan = document.getElementById("dateSpan");
+    const timeSpan = document.getElementById("timeSpan");
+    const now = new Date();
+    dateSpan.innerText = now.toDateString();
+    timeSpan.innerText = now.toLocaleTimeString();
+}
+
+updateClock();
+setInterval(updateClock, 1000);
+</script>
+
+<footer>
+    <p>© 2026 Women’s Health Care | Your Health, Our Priority</p>
+</footer>
+
+</body>
+</html>

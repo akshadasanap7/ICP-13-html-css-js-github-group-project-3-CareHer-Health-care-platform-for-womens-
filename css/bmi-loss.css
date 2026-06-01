@@ -1,0 +1,126 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f7f9fc;
+}
+
+header {
+    background-color: #d85590;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+}
+.cart-icon {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 30px;
+}
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+.product {
+    background: white;
+    width: 260px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.product img {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+}
+.product h3 {
+    color: #d85590;
+}
+
+.price {
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.btn {
+    display: block;
+    margin: 8px 0;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.cart-btn {
+    background: #d85590;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.cart-btn:hover {
+    background:#682042 ;
+    transition: 0.3s;
+}
+.amazon-btn {
+    background: #28ac80;
+    color: black;
+}
+
+.amazon-btn:hover {
+    background: #0d6b5b;
+    transition: 0.3s;
+  }
+
+.cart-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+}
+.cart-content {
+    background: white;
+    max-width: 420px;
+    margin: 80px auto;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.cart-content ul {
+    padding: 0;
+    list-style: none;
+}
+.cart-content li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.remove-btn {
+    color: red;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+     background: #e9ecef;
+    margin-top: 40px;
+}
+
+@media (max-width: 600px) {
+    .product {
+        width: 100%;
+    }
+}

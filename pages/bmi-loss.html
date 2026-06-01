@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Weight Loss Products for Women</title>
+<link rel="stylesheet" href="../css/bmi-loss.css"/>
+<script src="../js/bmi-loss.js" defer></script>
+
+</head>
+
+<body>
+
+<header>
+<h1>Weight Loss Products</h1>
+<p>Recommended for Women</p>
+<div class="cart-icon" onclick="toggleCart()">🛒 Cart (<span id="cartCount">0</span>)</div>
+</header>
+
+<div class="container">
+<div class="products">
+
+<!-- PRODUCT 1 -->
+<div class="product">
+<img src="../images/loss-p1.jpg">
+<h3>NatureWise Green Tea</h3>
+<p>Boosts metabolism naturally.</p>
+<div class="price">$19.99</div>
+<button class="btn cart-btn" onclick="addToCart('Green Tea',19.99)">Add to Cart</button>
+<a class="btn amazon-btn" href="https://www.amazon.com/dp/B01B4W3G4K" target="_blank">Buy on Amazon</a>
+</div>
+
+<!-- PRODUCT 2 -->
+<div class="product">
+<img src="../images/loss-p2.jpg">
+<h3>Hunter Burn</h3>
+<p>Advanced fat burner for women.</p>
+<div class="price">$54.99</div>
+<button class="btn cart-btn" onclick="addToCart('Hunter Burn',54.99)">Add to Cart</button>
+<a class="btn amazon-btn" href="https://www.amazon.com/dp/B08F7ZK9ZP" target="_blank">Buy on Amazon</a>
+</div>
+
+<!-- PRODUCT 3 -->
+<div class="product">
+<img src="../images/loss-p3.jpg">
+<h3>Orgain Protein Shake</h3>
+<p>Low-calorie meal replacement.</p>
+<div class="price">$29.99</div>
+<button class="btn cart-btn" onclick="addToCart('Protein Shake',29.99)">Add to Cart</button>
+<a class="btn amazon-btn" href="https://www.amazon.com/dp/B00J074W94" target="_blank">Buy on Amazon</a>
+</div>
+
+<!-- PRODUCT 4 -->
+<div class="product">
+<img src="../images/loss-p4.jpg">
+<h3>Metamucil Fiber</h3>
+<p>Improves digestion & fullness.</p>
+<div class="price">$17.99</div>
+<button class="btn cart-btn" onclick="addToCart('Fiber Supplement',17.99)">Add to Cart</button>
+<a class="btn amazon-btn" href="https://www.amazon.com/dp/B0014E5FHG" target="_blank">Buy on Amazon</a>
+</div>
+
+<!-- PRODUCT 5 -->
+<div class="product">
+<img src="../images/loss-p5.jpg">
+<h3>Atkins Meal Bars</h3>
+<p>Low-carb meal replacement bars.</p>
+<div class="price">$24.99</div>
+<button class="btn cart-btn" onclick="addToCart('Atkins Bars',24.99)">Add to Cart</button>
+<a class="btn amazon-btn" href="https://www.amazon.com/dp/B01M0L9B1G" target="_blank">Buy on Amazon</a>
+</div>
+
+<!-- PRODUCT 6 -->
+<div class="product">
+<img src="../images/loss-p6.jpg">
+<h3>Apple Cider Gummies</h3>
+<p>Supports digestion & weight loss.</p>
+<div class="price">$21.99</div>
+<button class="btn cart-btn" onclick="addToCart('ACV Gummies',21.99)">Add to Cart</button>
+<a class="btn amazon-btn" href="https://www.amazon.com/dp/B08J8GJ5QG" target="_blank">Buy on Amazon</a>
+</div>
+
+</div>
+</div>
+
+<!-- CART MODAL -->
+<div class="cart-modal" id="cartModal">
+<div class="cart-content">
+<h3>Your Cart</h3>
+<ul id="cartItems"></ul>
+<p><strong>Total: $<span id="cartTotal">0.00</span></strong></p>
+<button onclick="toggleCart()">Close</button>
+</div>
+</div>
+
+<footer>
+<p>© 2026 Careher womens healthcare platform</p>
+</footer>
+
+</body>
+</html>

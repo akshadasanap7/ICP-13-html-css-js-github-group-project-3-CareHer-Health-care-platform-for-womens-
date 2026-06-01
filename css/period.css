@@ -1,0 +1,365 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background-color: #fff7fb;
+  padding-top: 88px;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  padding: 14px 50px;
+  background-color: #ffbfec;
+}
+
+
+.nav-logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #d85590;
+}
+
+.nav-name {
+  font-size: 28px;
+  font-weight: 700;
+  color: #c93779;
+  margin-left: 12px;
+}
+
+.menu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+  margin-left: auto;
+  
+}
+
+.menu a {
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 700;
+  color: #d85590;
+  transition: 0.3s ease;
+}
+
+.menu a:hover {
+  color: #ea1068;
+}
+
+.menu img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #c93779;
+  cursor: pointer;
+}
+/* ===== Clock in Navbar ===== */
+.nav-clock {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #c93779;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+#dateSpan {
+  font-size: 13px;
+}
+
+#timeSpan {
+  font-size: 14px;
+  font-weight: 700;
+  color: #a81f5a;
+}
+
+.dashboard-container {
+    max-width: 1100px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(165, 56, 96, 0.2); }
+
+h2 {
+    text-align: center;
+    color: #a53860;
+    margin-bottom: 2rem;
+}
+
+.input-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;
+    gap: 1rem;
+  }
+label { font-weight: 600;
+    margin-bottom: 5px;
+    display: block;
+    color: #7a2146;
+}
+input, select {
+    width: 100%;
+    padding: 0.6rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+button {
+    margin: 2rem auto;
+    display: block;
+    background: #a53860;
+    color: white;
+    padding: 0.8rem 2.2rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+button:hover {
+    background: #8e2a50;
+}
+#periodForm {
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+#periodForm.hide {
+  opacity: 0;
+  transform: scale(0.95);
+  pointer-events: none;
+}
+
+.results {
+    margin-top: 2rem;
+    background:linear-gradient(135deg, #fde4ec, #fff);
+    padding: 1.8rem;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(200, 80, 120, 0.25);
+    animation: fadeIn 0.6s ease;
+}
+.results h3 {
+  color: #a53860;
+  margin-bottom: 1rem;
+}
+.results p {
+  margin: 6px 0;
+  color: #5c1b34;
+  font-weight: 500;
+}
+#regularityButton {
+  display: none;
+  margin: 1.5rem auto 0 auto;
+  padding: 0.7rem 2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#regularityButton.regular {
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
+  color: white;
+  box-shadow: 0 4px 12px rgba(39, 174, 96, 0.4);
+}
+
+#regularityButton.irregular {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  color: white;
+  box-shadow: 0 4px 12px rgba(192, 57, 43, 0.4);
+}
+
+
+.calendar {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+}
+.calendar div {
+    padding: 1rem;
+    text-align: center;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    transition: 0.3s ease;
+}
+.calendar div:hover {
+  transform: scale(1.08);
+  cursor: pointer;
+}
+
+.period {
+    background: #f06292;
+    color: white;
+}
+.ovulation {
+    background: #ba68c8;
+    color: white;
+}
+    
+.luteal {
+    background: #aed581;
+    color: white;
+}
+.normal {
+    background: #f5f5f5;
+}
+#reward-image {
+  cursor: pointer;
+}
+
+
+#regularityButton {
+    display: block;
+    margin: 1rem auto 0 auto;
+    padding: 0.7rem 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+    #regularityButton.regular { background-color: green; color: white; }
+    #regularityButton.irregular { background-color: red; color: white; }
+
+#chatbot-icon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 65px;
+  height: 65px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  cursor: pointer;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#chatbot-icon img {
+  width: 45px;
+  height: 45px;
+}
+
+/* CHATBOT POPUP */
+#chatbot-popup {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 420px;
+  height: 70vh;
+  max-height: 520px;
+  min-height: 380px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  display: none;
+  z-index: 3000;
+  overflow: hidden;
+}
+
+#chatbot-popup iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.footer {
+  background: #ffe6f2;
+  padding: 30px 50px 10px;
+  color: #c93779;
+  margin-top: 80px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footer-left h3 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.footer-left p {
+  font-size: 14px;
+  color: #a83a6a;
+}
+
+.footer-center a {
+  margin: 0 12px;
+  text-decoration: none;
+  color: #c93779;
+  font-weight: 500;
+}
+
+.footer-center a:hover {
+  color: #ea1068;
+}
+
+.footer-right {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+.footer-right .heart {
+  margin-right: 6px;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 13px;
+  color: #a83a6a;
+  border-top: 1px solid #f2b6d8;
+  padding-top: 10px;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 768px) {
+  .dashboard-container {
+    margin: 1.5rem;
+    padding: 1.5rem;
+  }
+
+  .menu {
+    gap: 15px;
+  }
+
+  .menu a {
+    font-size: 16px;
+  }
+
+  .calendar {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

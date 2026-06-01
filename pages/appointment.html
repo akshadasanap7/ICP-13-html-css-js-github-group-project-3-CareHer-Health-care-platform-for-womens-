@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Doctor Appointment – CareHer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+:root{
+  --primary:#a53860;
+  --secondary:#ff6fae;
+  --bg:#fde4ec;
+  --card:#fff;
+  --text:#333;
+  --light:#fde4ec;
+  --white:#fff;
+  --dark:#333;
+}
+body.dark{
+  --primary:#ff6fae;
+  --secondary:#ff9ccc;
+  --bg:#1e1e1e;
+  --card:#2c2c2c;
+  --text:#eee;
+}
+
+*{ box-sizing:border-box; font-family:'Segoe UI',sans-serif; }
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  transition:0.3s;
+}
+
+
+#themeBtn{
+  position:fixed;
+  top:15px;
+  right:15px;
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  border:none;
+  cursor:pointer;
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  color:white;
+  font-size:18px;
+  z-index:1000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 4px 12px rgba(0,0,0,0.3);
+  transition:0.3s;
+}
+#themeBtn:hover{transform:scale(1.1);}
+
+
+header{
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  color:white;
+  padding:28px;
+  text-align:center;
+}
+
+.card{
+  background:var(--card);
+  max-width:600px;
+  margin:40px auto;
+  padding:30px;
+  border-radius:18px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.15);
+  transition:0.3s;
+}
+body.dark .card{
+  border:2px solid transparent;
+  background-image:
+    linear-gradient(var(--card),var(--card)),
+    linear-gradient(135deg,var(--primary),var(--secondary));
+  background-origin:border-box;
+  background-clip:padding-box,border-box;
+}
+
+h2{ color:var(--primary); text-align:center; }
+
+/* ===== FORM ===== */
+#appointmentForm{ display:flex; flex-direction:column; }
+label{ margin-top:12px; font-weight:600; }
+
+input, select, textarea{
+  width:100%;
+  padding:11px;
+  margin-top:6px;
+  border-radius:8px;
+  border:1px solid #ccc;
+  background:var(--card);
+  color:var(--text);
+  transition:0.3s;
+}
+input:focus, select:focus, textarea:focus{
+  outline:none;
+  border-color:var(--primary);
+  box-shadow:0 0 0 2px rgba(165,56,96,0.15);
+}
+
+.checkbox-group{
+  margin-top:6px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+.checkbox-group label{ font-weight:normal; }
+
+
+#appointmentForm button{
+  margin-top:28px;
+  padding:13px;
+  background: linear-gradient(135deg,var(--primary),var(--secondary));
+  color:white;
+  border:none;
+  border-radius:30px;
+  font-size:16px;
+  cursor:pointer;
+  transition:0.3s;
+}
+#appointmentForm button:hover{opacity:0.9; transform:translateY(-1px);}
+
+
+.note{ font-size:13px; color:#666; margin-top:15px; text-align:center; }
+.success{
+  margin-top:18px;
+  background:#e8f5e9;
+  padding:12px;
+  border-radius:10px;
+  color:green;
+  text-align:center;
+  animation:fadeIn 0.5s ease;
+}
+body.dark .success{
+  background:#2c2c2c;
+  color:#c0f2c0;
+}
+.hidden{ display:none; }
+
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(10px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+/* ===== FOOTER ===== */
+.footer{
+  width:100%;
+  background:#ffe6f2;
+  padding:25px 20px;
+}
+.footer-content{
+  max-width:1100px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:15px;
+}
+.footer-left h3{color:#c93779;}
+.footer-left p{font-size:14px;color:#a83a6a;}
+.footer-center a{
+  margin:0 8px;
+  text-decoration:none;
+  color:#c93779;
+  font-weight:500;
+  font-size:14px;
+}
+.footer-center a:hover{color:#ea1068;}
+.footer-right{font-size:14px;color:#c93779;}
+.footer-bottom{
+  text-align:center;
+  margin-top:15px;
+  font-size:13px;
+  color:#a83a6a;
+  border-top:1px solid #f2b6d8;
+  padding-top:10px;
+}
+
+body.dark .footer{background:#121212;}
+body.dark .footer *{color:#ff9fcf;}
+body.dark .footer-bottom{border-top:1px solid #2a2a2a;}
+
+@media(max-width:600px){
+  .checkbox-group{grid-template-columns:1fr;}
+}
+</style>
+</head>
+
+<body>
+
+<button id="themeBtn">🌙</button>
+
+<header>
+  <h1>👩‍⚕️ Book Doctor Appointment</h1>
+  <p>Safe • Private • Supportive Care</p>
+</header>
+
+<section class="card">
+  <h2>Patient Details</h2>
+
+  <form id="appointmentForm">
+
+    <label>Full Name</label>
+    <input type="text" id="name" required>
+
+    <label>Email Address</label>
+    <input type="email" id="email" required>
+
+    <label>Age</label>
+    <input type="number" id="age" min="12" max="60" required>
+
+    <label>Select Doctor</label>
+    <select id="doctor" required>
+      <option value="">-- Choose Specialist --</option>
+      <option>Gynecologist</option>
+      <option>Endocrinologist</option>
+      <option>Nutritionist</option>
+      <option>PCOD Wellness Expert</option>
+    </select>
+
+    <label>Appointment Date</label>
+    <input type="date" id="date" required>
+
+    <label>Preferred Time</label>
+    <select id="time" required>
+      <option value="">-- Select Time --</option>
+      <option>10:00 AM</option>
+      <option>12:00 PM</option>
+      <option>3:00 PM</option>
+      <option>6:00 PM</option>
+    </select>
+
+    <label>PCOD/PCOS Symptoms</label>
+    <div class="checkbox-group">
+      <label><input type="checkbox" value="Irregular periods"> Irregular periods</label>
+      <label><input type="checkbox" value="Acne"> Acne</label>
+      <label><input type="checkbox" value="Weight gain"> Weight gain</label>
+      <label><input type="checkbox" value="Hair fall"> Hair fall</label>
+      <label><input type="checkbox" value="Mood swings"> Mood swings</label>
+    </div>
+
+    <label>Describe Your Symptoms</label>
+    <textarea id="description" rows="4"></textarea>
+
+    <button type="submit">Book Appointment</button>
+  </form>
+
+  <p class="note">🔒 Your information is private and confidential.</p>
+
+  <div id="successMsg" class="success hidden">
+    ✅ Appointment booked successfully! Our team will contact you shortly.
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-left">
+      <h3>CareHer</h3>
+      <p>Women’s healthcare platform</p>
+    </div>
+    <div class="footer-center">
+      <a href="index.html">Home</a>
+      <a href="healthcheck.html">Health Check</a>
+      <a href="exercise.html">Exercise</a>
+      <a href="contact.html">Contact</a>
+      <a href="review.html">Reviews</a>
+    </div>
+    <div class="footer-right">
+      💗 <span>Your health, our priority</span>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 CareHer. All rights reserved.
+  </div>
+</footer>
+
+<script>
+
+const themeBtn = document.getElementById("themeBtn");
+if(localStorage.getItem("theme")==="dark"){
+  document.body.classList.add("dark");
+  themeBtn.innerText="☀️";
+}else{
+  themeBtn.innerText="🌙";
+}
+
+themeBtn.onclick = () => {
+  document.body.classList.toggle("dark");
+  const isDark = document.body.classList.contains("dark");
+  localStorage.setItem("theme", isDark ? "dark" : "light");
+  themeBtn.innerText = isDark ? "☀️" : "🌙";
+};
+
+
+const dateInput = document.getElementById("date");
+const today = new Date().toISOString().split("T")[0];
+dateInput.min = today;
+
+document.getElementById("appointmentForm").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  const symptoms = Array.from(document.querySelectorAll('.checkbox-group input:checked'))
+    .map(cb=>cb.value);
+
+  const appointment = {
+    name: document.getElementById("name").value.trim(),
+    email: document.getElementById("email").value.trim(),
+    age: document.getElementById("age").value,
+    doctor: document.getElementById("doctor").value,
+    date: document.getElementById("date").value,
+    time: document.getElementById("time").value,
+    symptoms: symptoms,
+    description: document.getElementById("description").value.trim(),
+    createdAt: new Date().toISOString()
+  };
+
+  localStorage.setItem("appointment", JSON.stringify(appointment));
+
+  const successMsg = document.getElementById("successMsg");
+  successMsg.classList.remove("hidden");
+
+  this.reset();
+
+  setTimeout(()=> successMsg.classList.add("hidden"), 5000);
+});
+</script>
+
+</body>
+</html>

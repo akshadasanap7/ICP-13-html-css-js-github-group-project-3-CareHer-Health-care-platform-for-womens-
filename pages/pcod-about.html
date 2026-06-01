@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PCOD Self-Assessment Quiz | CareHer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
+
+
+:root{
+  --primary:#d63384; 
+  --secondary:#ff6fae; 
+  --bg:#fff0f6; 
+  --card:#ffffff; 
+  --text:#333; 
+  --btn-bg: linear-gradient(135deg,var(--primary),var(--secondary));
+}
+body.dark{
+  --primary:#ff6fae;
+  --secondary:#ff9ccc;
+  --bg:#1e1e1e;
+  --card:#2c2c2c;
+  --text:#eee;
+}
+
+body{
+  background:linear-gradient(135deg,var(--bg),#ffffff);
+  color:var(--text);
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  transition:0.3s;
+}
+body.dark{background:linear-gradient(135deg,var(--primary),var(--bg));}
+
+
+#themeBtn{
+  position:fixed;
+  top:15px;
+  right:15px;
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  border:none;
+  cursor:pointer;
+  background:var(--primary);
+  color:white;
+  font-size:20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 4px 12px rgba(0,0,0,0.3);
+  z-index:1000;
+}
+body.dark #themeBtn{ background:var(--secondary); }
+
+
+.quiz-wrapper{
+  max-width:700px;
+  width:95%;
+  background:var(--card);
+  border-radius:25px;
+  padding:35px 25px;
+  margin:80px auto 40px;
+  box-shadow:0 25px 50px rgba(0,0,0,0.12);
+  text-align:center;
+  transition:0.3s;
+}
+.quiz-wrapper h1{color:var(--primary); font-size:28px;margin-bottom:10px;}
+.subtitle{color:#666;margin-bottom:25px;font-size:16px;}
+
+
+.progress-box{width:100%;height:14px;background:#ddd;border-radius:12px;overflow:hidden;margin-bottom:20px;}
+#progressBar{height:100%;width:0%;background:linear-gradient(to right,var(--primary),var(--secondary));border-radius:12px;transition:0.4s;}
+
+
+.options{display:flex;justify-content:center;gap:20px;margin-top:25px;flex-wrap:wrap;}
+.options button{
+  padding:12px 26px;
+  border:none;
+  border-radius:25px;
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  color:white;
+  font-size:16px;
+  font-weight:500;
+  cursor:pointer;
+  transition:0.3s;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+.options button:hover{transform:scale(1.05);box-shadow:0 8px 20px rgba(0,0,0,0.2);}
+
+.result{
+  margin-top:25px;
+  padding:25px;
+  border-radius:20px;
+  background:var(--card);
+  box-shadow:0 15px 35px rgba(0,0,0,0.15);
+  text-align:center;
+  transition:0.3s;
+}
+.result h3{color:var(--primary);margin-bottom:10px;font-size:22px;}
+.result p{font-size:16px;margin:5px 0;}
+.risk.green{color:green;font-weight:600;}
+.risk.orange{color:orange;font-weight:600;}
+.risk.red{color:red;font-weight:600;}
+#nextBtn, #saveDataBtn{
+  margin-top:15px;
+  padding:12px 28px;
+  border:none;
+  border-radius:25px;
+  font-size:16px;
+  cursor:pointer;
+  color:white;
+  background:var(--btn-bg);
+  font-weight:500;
+  transition:0.3s;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+#nextBtn:hover, #saveDataBtn:hover{transform:scale(1.05);box-shadow:0 8px 20px rgba(0,0,0,0.2);}
+
+#savedData{margin-top:20px;text-align:left; max-height:300px; overflow-y:auto; padding:5px;}
+.saved-card{
+  background:#fff0f6;
+  padding:15px 20px;
+  border-left:5px solid #d63384;
+  border-radius:12px;
+  margin-bottom:12px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.08);
+  font-size:14px;
+  transition:0.3s;
+}
+.saved-card:hover{box-shadow:0 8px 20px rgba(0,0,0,0.15);}
+.saved-card span{font-weight:600; color:#d63384;}
+
+
+.footer{
+  width:100%;
+  background:#ffe6f2;
+  padding:25px 20px;
+  margin-top:auto;
+  transition:0.3s;
+}
+.footer-content{
+  max-width:1100px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:15px;
+}
+.footer-left h3{color:#c93779;} 
+.footer-left p{font-size:14px;color:#a83a6a;}
+.footer-center a{margin:0 8px;text-decoration:none;color:#c93779;font-weight:500;font-size:14px;}
+.footer-center a:hover{color:#ea1068;}
+.footer-right{font-size:14px;color:#c93779;}
+.footer-bottom{text-align:center;margin-top:15px;font-size:13px;color:#a83a6a;border-top:1px solid #f2b6d8;padding-top:10px;}
+body.dark .footer{background:#121212;} 
+body.dark .footer *{color:#ff9fcf;} 
+body.dark .footer-bottom{border-top:1px solid #2a2a2a;}
+</style>
+</head>
+
+<body>
+<button id="themeBtn">🌙</button>
+
+<section class="quiz-wrapper">
+  <h1>🌸 PCOD Self-Assessment</h1>
+  <p class="subtitle">Answer honestly to understand your health better</p>
+
+  <div class="progress-box">
+    <div id="progressBar"></div>
+  </div>
+  <p id="quizProgress"></p>
+
+  <div id="quizCard">
+    <h2 id="quizQuestion"></h2>
+    <div class="options">
+      <button onclick="answer(true)">Yes</button>
+      <button onclick="answer(false)">No</button>
+    </div>
+  </div>
+
+  <div id="quizResult" class="result" style="display:none;"></div>
+  <div id="savedData"></div>
+</section>
+
+
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-left">
+      <h3>CareHer</h3>
+      <p>Women’s healthcare platform</p>
+    </div>
+    <div class="footer-center">
+      <a href="index.html">Home</a>
+      <a href="healthcheck.html">Health Check</a>
+      <a href="exercise.html">Exercise</a>
+      <a href="contact.html">Contact</a>
+      <a href="review.html">Reviews</a>
+    </div>
+    <div class="footer-right">
+      💗 Your health, our priority
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 CareHer. All rights reserved.
+  </div>
+</footer>
+
+
+<script>
+
+const themeBtn=document.getElementById("themeBtn");
+if(localStorage.getItem("theme")==="dark"){document.body.classList.add("dark"); themeBtn.textContent="☀️";}
+themeBtn.onclick=()=>{
+  document.body.classList.toggle("dark"); 
+  localStorage.setItem("theme", document.body.classList.contains("dark")?"dark":"light"); 
+  themeBtn.textContent=document.body.classList.contains("dark")?"☀️":"🌙";
+};
+
+
+const questions=["Do you have irregular periods?","Do you gain weight easily?","Do you have acne or oily skin?","Do you face hair fall?","Do you have facial/body hair growth?","Do you feel tired often?","Do you crave sugary food?","Do you have mood swings?","Do you have insulin resistance?","Family history of PCOD?"];
+let current=0, score=0, saved=false;
+const qEl=document.getElementById("quizQuestion");
+const pEl=document.getElementById("quizProgress");
+const bar=document.getElementById("progressBar");
+const card=document.getElementById("quizCard");
+const result=document.getElementById("quizResult");
+const savedDiv=document.getElementById("savedData");
+
+
+localStorage.removeItem("pcodQuizHistory");
+
+function loadQ(){ 
+  qEl.textContent=questions[current]; 
+  pEl.textContent=`Question ${current+1} of ${questions.length}`; 
+  bar.style.width=(current/questions.length)*100+"%"; 
+}
+function answer(yes){ 
+  if(yes) score++; 
+  current++; 
+  current<questions.length ? loadQ() : showResult(); 
+}
+
+function displaySavedData(){
+  let history=JSON.parse(localStorage.getItem("pcodQuizHistory"))||[];
+  if(history.length===0){ savedDiv.innerHTML="<p>No saved data yet.</p>"; return;}
+  let html="<h4>Saved Quiz Data:</h4>";
+  history.forEach(item=>{
+    html+=`<div class="saved-card">
+      <span>${item.date}</span><br>
+      Score: <b>${item.score}/${item.total}</b><br>
+      Risk: <b>${item.risk}</b>
+    </div>`;
+  });
+  savedDiv.innerHTML=html;
+}
+
+function showResult(){
+  card.style.display="none";
+  pEl.style.display="none";
+  bar.style.width="100%";
+
+  let risk,color,msg;
+  if(score<=3){risk="Low Risk";color="green";msg="Maintain healthy lifestyle 🌱";}
+  else if(score<=6){risk="Moderate Risk";color="orange";msg="Improve diet & routine ⚠️";}
+  else{risk="High Risk";color="red";msg="Consult doctor 🚨";}
+
+  result.style.display="block";
+  result.innerHTML=`
+    <h3>Assessment Completed</h3>
+    <p class="risk ${color}">${risk}</p>
+    <p>${msg}</p>
+    <p><b>Score:</b> ${score}/${questions.length}</p>
+    <button id="nextBtn">Check PCOD Risk</button>
+    <button id="saveDataBtn">Your Data</button>
+  `;
+
+  document.getElementById("nextBtn").onclick=()=>window.location.href="pcod-risk.html";
+
+  document.getElementById("saveDataBtn").onclick=()=>{
+    if(saved){ alert("This attempt is already saved!"); return; }
+    const quizData={ date:new Date().toLocaleString(), score, total:questions.length, risk };
+    let history=[];
+    history.push(quizData);
+    localStorage.setItem("pcodQuizHistory",JSON.stringify(history));
+    saved=true;
+    displaySavedData();
+    alert("Your quiz data has been saved!");
+  };
+}
+
+
+loadQ();
+</script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HealthCare Website</title>
+  <link rel="stylesheet" href="./css/home.css"/>
+  <script src="./js/home.js" defer></script>
+</head>
+
+<body>
+  <div class="navbar">
+    <img src="./images/logo.png" alt="logo" class="nav-logo"/>
+    <span class="nav-name">Care Her</span>
+    <div class="menu">
+      <a href="index.html">Home</a>
+      <a href="./pages/healthCheck.html">Health Check</a>
+      <a href="./pages/exercise.html">Exercise</a>
+      <a href="./pages/contact.html">Contact</a>
+      <a href="./pages/review.html">Reviews</a>
+      <a href="./pages/signup.html"><img src="./images/woman.png" alt="login"/></a>
+      <div class="nav-clock">
+        <span id="dateSpan"></span>
+        <span id="timeSpan"></span>
+      </div>
+      <button id="themeToggle" class="theme-toggle">🌙</button>
+
+    </div>
+    </div>
+
+    <div class="welcome-container">
+    <h1 id="askName">Enter your good name 🌸</h1>
+
+    <input
+      type="text"
+      id="userNameInput"
+      placeholder="Your name"
+    />
+
+    <br />
+    <button id="submitBtn" onclick="saveUserName()">Submit</button>
+
+    <h1 id="welcomeMessage">
+      <span id="userNameText"></span>
+    </h1>
+  </div>
+  
+  <div class="tagline">
+    <img src="./images/circle.png" alt="tagline"/>
+  </div>
+
+  <p class="home-para">
+  CareHer is a dedicated health care platform designed to support women at every stage of life.
+  Under our <strong>Health Check</strong> section, we provide tools for early detection of
+  <strong>PCOD</strong> and <strong>PCOS</strong>, a smart <strong>BMI Calculator</strong>, and an
+  intelligent <strong>Period Tracker</strong> that helps monitor menstrual cycles accurately.
+  Based on individual health inputs, CareHer also offers <strong>personalized diet plans</strong>
+  and <strong>customized product recommendations</strong> to meet unique wellness needs.
+  Along with guided <strong>Exercise</strong> routines, honest user <strong>Reviews</strong>, and
+  easy access through the <strong>Contact</strong> section, we aim to create a safe, supportive,
+  and empowering space for women’s physical and emotional well-being.
+</p>
+<footer class="footer">
+  <div class="footer-content">
+
+    <div class="footer-left">
+      <h3>CareHer</h3>
+      <p>Women health care platform</p>
+    </div>
+
+    <div class="footer-center">
+      <a href="index.html">Home</a>
+      <a href="./pages/healthcheck.html">Health Check</a>
+      <a href="./pages/exercise.html">Exercise</a>
+      <a href="./pages/contact.html">Contact</a>
+      <a href="./pages/review.html">Reviews</a>
+    </div>
+
+    <div class="footer-right">
+      <span class="heart">💗</span>
+      <span>Your health, our priority</span>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © Care Her. All rights reserved.
+  </div>
+</footer>
+
+</body>
+</html>

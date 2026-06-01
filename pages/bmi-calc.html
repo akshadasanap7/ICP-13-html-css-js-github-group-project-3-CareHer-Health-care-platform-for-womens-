@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>BMI Calculator</title>
+  <link rel="stylesheet" href="../css/bmi-calc.css"/>
+  <link rel="stylesheet" href="../css/home.css"/>
+
+  <script src="../js/bmi-calc.js" defer></script>
+</head>
+
+<body class="body" id="body">
+    <div class="navbar" id="navbar">
+     <img src="../images/logo.png" alt="logo" class="nav-logo"/>
+    <span class="nav-name">Care Her</span>
+    <div class="menu">
+      <a href="../index.html">Home</a>
+      <a href="../pages/healthCheck.html">HealthCheck</a>
+      <a href="../pages/exercise.html">Exercise</a>
+      <a href="../pages/Contact.html">Contact</a>
+      <a href="../pages/Contact.html">Reviews</a>
+      <a href="../pages/login.html"><img src="../images/woman.png" alt="login"/></a>
+      <div class="nav-clock">
+        <span id="dateSpan"></span>
+        <span id="timeSpan"></span>
+      </div>
+      <button id="themeToggle" class="theme-toggle" onclick="toggleTheme()">🌙</button>
+      </div>
+      </div>
+
+
+<!-- BMI Calculator -->
+<div class="bmi-container">
+  <h2>Calculate Your BMI Here!</h2>
+
+  <label>Weight (kg)</label>
+  <input type="number" id="weight">
+
+  <label>Height (cm)</label>
+  <input type="number" id="height">
+
+  <div class="btn-group">
+    <button class="calculate-btn" onclick="calculateBMI()">Calculate</button>
+    <button class="reset-btn" onclick="resetBMI()">Reset</button>
+  </div>
+
+  <div class="result" id="result"></div>
+</div>
+
+<!-- Floating Chatbot -->
+<div class="floating-chatbot">
+  <div class="chat-header" onclick="toggleChat()">👩‍⚕️ Women's BMI Assistant</div>
+  <div class="chat-messages" id="chatMessages">
+    <div class="bot">Hi! Ask me about BMI, diet, exercise, or periods info.</div>
+  </div>
+  <div class="chat-input">
+    <input type="text" id="chatInput" placeholder="Ask something...">
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</div>
+
+
+</body>
+</html>

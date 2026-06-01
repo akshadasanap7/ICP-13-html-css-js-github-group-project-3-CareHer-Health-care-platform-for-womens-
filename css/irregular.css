@@ -1,0 +1,84 @@
+  body {
+    font-family: Arial, sans-serif;
+    background: #fff3f8;
+    padding: 25px;
+  }
+
+  h1 {
+    text-align: center;
+    color: #c93779;
+    margin-bottom: 30px;
+  }
+
+  h2 {
+    color: #ea1068;
+    margin-bottom: 15px;
+    min-height: 28px;
+  }
+
+  .section {
+    display: none;
+    margin-bottom: 40px;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+  }
+
+  .card {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #f2c6da;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 16px rgba(201, 55, 121, 0.25);
+}
+
+
+  .card img {
+    width: 100%;
+    height: 130px;
+    object-fit: contain;
+    margin-bottom: 8px;
+  }
+
+  .card h3 {
+    margin: 6px 0;
+    color: #c93779;
+    font-size: 16px;
+  }
+
+  .card p {
+    font-size: 13px;
+    color:#a53860;
+  }
+  .video-card {
+  width: 100%;
+  height: 130px;
+  overflow: hidden;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.hover-video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.card:hover .hover-video {
+  transform: scale(1.05);
+}

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PCOD Doctor Care | CareHer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
+}
+
+
+:root{
+  --primary:#d63384;
+  --secondary:#ff6fae;
+  --bg:#fff0f6;
+  --card:#ffffff;
+  --text:#333;
+}
+body.dark{
+  --primary:#ff6fae;
+  --secondary:#ff9ccc;
+  --bg:#1e1e1e;
+  --card:#2c2c2c;
+  --text:#eee;
+}
+
+
+body{
+  background:linear-gradient(135deg,var(--bg),#ffffff);
+  color:var(--text);
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  transition:.3s;
+}
+body.dark{
+  background:linear-gradient(135deg,var(--primary),var(--bg));
+}
+
+
+#themeBtn{
+  position:fixed;
+  top:15px;
+  right:15px;
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  border:none;
+  cursor:pointer;
+  background:var(--primary);
+  color:white;
+  font-size:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 4px 12px rgba(0,0,0,.3);
+  z-index:1000;
+}
+body.dark #themeBtn{background:var(--secondary);}
+
+
+.header{
+  text-align:center;
+  padding:30px 15px;
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  color:white;
+}
+
+
+.container{
+  max-width:900px;
+  width:90%;
+  margin:auto;
+  padding:20px;
+}
+
+.card{
+  background:var(--card);
+  padding:25px;
+  margin:20px 0;
+  border-radius:20px;
+  box-shadow:0 20px 45px rgba(0,0,0,.15);
+}
+body.dark .card{
+  border:2px solid transparent;
+  background-image:
+    linear-gradient(var(--card),var(--card)),
+    linear-gradient(135deg,var(--primary),var(--secondary));
+  background-origin:border-box;
+  background-clip:padding-box,border-box;
+}
+.card h2{color:var(--primary);}
+.card ul{padding-left:18px;}
+.card ul li{margin:8px 0;}
+.warn{color:red;font-size:13px;}
+.center{text-align:center;}
+
+button{
+  width:100%;
+  padding:16px;
+  border:none;
+  border-radius:25px;
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  color:white;
+  font-size:18px;
+  cursor:pointer;
+  transition:.2s;
+}
+button:hover{opacity:.9;}
+
+.btn-group{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+
+.footer{
+  margin-top:auto;
+  width:100%;
+  background:#ffe6f2;
+  padding:25px 20px;
+}
+.footer-content{
+  max-width:1100px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:15px;
+}
+.footer-left h3{color:#c93779;}
+.footer-left p{font-size:14px;color:#a83a6a;}
+.footer-center a{
+  margin:6px 8px;
+  text-decoration:none;
+  color:#c93779;
+  font-weight:500;
+  font-size:14px;
+}
+.footer-center a:hover{color:#ea1068;}
+.footer-right{font-size:14px;color:#c93779;}
+.footer-bottom{
+  text-align:center;
+  margin-top:15px;
+  font-size:13px;
+  color:#a83a6a;
+  border-top:1px solid #f2b6d8;
+  padding-top:10px;
+}
+
+body.dark .footer{background:#121212;}
+body.dark .footer *{color:#ff9fcf;}
+body.dark .footer-bottom{border-top:1px solid #2a2a2a;}
+
+
+#chatbot{
+  position:fixed;
+  bottom:15px;
+  right:15px;
+  width:280px;
+  height:350px;
+  display:none;
+  flex-direction:column;
+  background:var(--card);
+  border-radius:16px;
+  box-shadow:0 10px 30px rgba(0,0,0,.2);
+  overflow:hidden;
+  z-index:10000;
+}
+.chat-header{
+  background:var(--primary);
+  color:white;
+  padding:10px;
+  display:flex;
+  justify-content:space-between;
+}
+.chat-body{flex:1;padding:10px;overflow-y:auto;}
+.user{text-align:right;margin:6px 0;}
+.bot{text-align:left;margin:6px 0;}
+.chat-input{display:flex;padding:8px;}
+.chat-input input{
+  flex:1;
+  padding:6px;
+  border-radius:10px;
+  border:1px solid #ccc;
+}
+.chat-input button{
+  width:auto;
+  padding:6px 12px;
+  font-size:14px;
+  border-radius:10px;
+  margin-left:6px;
+}
+
+
+@media(max-width:768px){
+  .footer-content{
+    flex-direction:column;
+    text-align:center;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<button id="themeBtn">🌙</button>
+
+<header class="header">
+  <h1>👩‍⚕️ PCOD Doctor Care</h1>
+  <p>Trusted • Confidential • Women-Centered Care</p>
+</header>
+
+<section class="container">
+
+  <div class="card">
+    <h2>🌸 What is PCOD?</h2>
+    <p>PCOD is a hormonal imbalance affecting ovulation, metabolism, and reproductive health.</p>
+  </div>
+
+  <div class="card">
+    <h2>⚠ Common Symptoms</h2>
+    <ul>
+      <li>Irregular periods</li>
+      <li>Weight gain</li>
+      <li>Acne & oily skin</li>
+      <li>Hair fall</li>
+      <li>Mood swings</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>🧪 Diagnosis</h2>
+    <ul>
+      <li>Ultrasound</li>
+      <li>Hormonal tests</li>
+      <li>Blood sugar tests</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>💊 Treatment</h2>
+    <ul>
+      <li>Hormone regulation</li>
+      <li>Weight management</li>
+      <li>Fertility support</li>
+    </ul>
+    <p class="warn">⚠ Only under doctor supervision</p>
+  </div>
+
+  <div class="card center">
+    <h2>📅 Book Appointment</h2>
+    <div class="btn-group">
+      <button onclick="bookAppointment()">Book Appointment</button>
+      <button onclick="openChat()">Chat With Doctor</button>
+    </div>
+  </div>
+
+</section>
+
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-left">
+      <h3>CareHer</h3>
+      <p>Women’s healthcare platform</p>
+    </div>
+    <div class="footer-center">
+      <a href="index.html">Home</a>
+      <a href="healthcheck.html">Health Check</a>
+      <a href="exercise.html">Exercise</a>
+      <a href="contact.html">Contact</a>
+      <a href="review.html">Reviews</a>
+    </div>
+    <div class="footer-right">
+      💗 Your health, our priority
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 CareHer. All rights reserved.
+  </div>
+</footer>
+
+
+<div id="chatbot">
+  <div class="chat-header">
+    PCOD Doctor Assistant
+    <span onclick="openChat()">✖</span>
+  </div>
+  <div class="chat-body" id="chatBody">
+    <div class="bot">Hello 🌸 How can I help you?</div>
+  </div>
+  <div class="chat-input">
+    <input type="text" id="chatInput" placeholder="Ask your question...">
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</div>
+
+<script>
+
+const themeBtn=document.getElementById("themeBtn");
+if(localStorage.getItem("theme")==="dark"){
+  document.body.classList.add("dark");
+  themeBtn.textContent="☀️";
+}
+themeBtn.onclick=()=>{
+  document.body.classList.toggle("dark");
+  localStorage.setItem(
+    "theme",
+    document.body.classList.contains("dark")?"dark":"light"
+  );
+  themeBtn.textContent=document.body.classList.contains("dark")?"☀️":"🌙";
+};
+
+
+function bookAppointment(){
+  location.href="appointment.html";
+}
+
+function openChat(){
+  const chat=document.getElementById("chatbot");
+  chat.style.display=chat.style.display==="flex"?"none":"flex";
+}
+function sendMessage(){
+  const input=document.getElementById("chatInput");
+  const body=document.getElementById("chatBody");
+  if(!input.value.trim()) return;
+  body.innerHTML+=`<div class="user">${input.value}</div>`;
+  input.value="";
+  setTimeout(()=>{
+    body.innerHTML+=`<div class="bot">PCOD can be managed with proper care, diet & lifestyle 🌸</div>`;
+    body.scrollTop=body.scrollHeight;
+  },400);
+}
+</script>
+
+</body>
+</html>

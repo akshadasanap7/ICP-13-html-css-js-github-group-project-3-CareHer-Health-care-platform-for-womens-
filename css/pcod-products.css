@@ -1,0 +1,194 @@
+
+
+   /* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* ===== THEME VARIABLES ===== */
+:root {
+  --primary: #d63384;
+  --secondary: #ff6fae;
+  --bg: #fff0f6;
+  --card: #ffffff;
+  --text: #333;
+}
+
+body.dark {
+  --primary: #ff6fae;
+  --secondary: #ff9ccc;
+  --bg: #1e1e1e;
+  --card: #2c2c2c;
+  --text: #eee;
+}
+
+/* ===== BODY ===== */
+body {
+  background: var(--bg);
+  color: var(--text);
+  transition: 0.3s;
+  padding-top: 90px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ===== DARK MODE BUTTON ===== */
+.dark-toggle {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  padding: 8px 14px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  font-size: 14px;
+  z-index: 100;
+}
+
+/* ===== QUIZ WRAPPER ===== */
+.quiz-wrapper {
+  max-width: 700px;
+  width: 90%;
+  background: var(--card);
+  border-radius: 20px;
+  padding: 30px;
+  margin: 40px auto;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: 0.3s;
+}
+
+body.dark .quiz-wrapper {
+  background-image:
+    linear-gradient(var(--card), var(--card)),
+    linear-gradient(135deg, var(--primary), var(--secondary));
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+.quiz-wrapper h1 {
+  color: var(--primary);
+}
+
+.subtitle {
+  color: #555;
+  margin: 12px 0 20px 0;
+}
+
+/* ===== PROGRESS BAR ===== */
+.progress-box {
+  width: 100%;
+  background: #ddd;
+  height: 16px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+#progressBar {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  transition: width 0.5s ease;
+}
+
+/* ===== QUIZ OPTIONS ===== */
+.options {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.options button {
+  padding: 12px 25px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  transition: all 0.3s ease;
+  min-width: 120px;
+}
+
+.options button:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 10px 25px rgba(214,51,132,0.35);
+}
+
+.options button:active {
+  transform: scale(0.97);
+}
+
+/* ===== QUIZ RESULT ===== */
+.result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 20px;
+  background: var(--card);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+body.dark .result {
+  background-image:
+    linear-gradient(var(--card), var(--card)),
+    linear-gradient(135deg, var(--primary), var(--secondary));
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+.risk.green { color: green; font-weight: 600; }
+.risk.orange { color: orange; font-weight: 600; }
+.risk.red { color: red; font-weight: 600; }
+
+/* ===== FOOTER ===== */
+.footer {
+  width: 100%;
+  margin-top: 40px;
+  background: linear-gradient(135deg,var(--bg),#ffd6e8);
+  border-top: 1px solid rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+body.dark .footer {
+  background: linear-gradient(135deg,var(--primary),var(--secondary));
+  border-top: 1px solid #333;
+}
+
+.footer-content {
+  max-width: 1100px;
+  margin: auto;
+  padding: 30px 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.footer-brand h3 { color: var(--primary); }
+.footer-links { display: flex; gap: 18px; flex-wrap: wrap; }
+.footer-links a { text-decoration: none; color: var(--text); transition: 0.3s; }
+.footer-links a:hover { color: var(--primary); }
+.footer-note { font-size: 14px; color: var(--text); opacity: 0.8; }
+.footer-bottom { text-align: center; padding: 12px; font-size: 13px; color: var(--text); opacity: 0.7; }
+
+/* ===== MOBILE ===== */
+@media(max-width:768px){
+  .options { flex-direction: column; gap: 15px; }
+  .footer-content { flex-direction: column; gap: 20px; }
+}

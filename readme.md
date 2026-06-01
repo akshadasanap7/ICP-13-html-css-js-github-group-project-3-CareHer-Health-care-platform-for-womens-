@@ -1,7 +1,7 @@
 # 🌸 CareHer – HealthCare Platform for Women
 
 Welcome to **CareHer**!  
-CareHer is a responsive women-focused healthcare website built using **HTML, CSS, and JavaScript**, designed to promote menstrual health awareness, cycle tracking, and overall wellness through a soft and user-friendly interface — with exercise guidance, diet plans, and chatbot integration.
+CareHer is a responsive women-focused healthcare website built using **HTML, CSS, JavaScript, and Node.js**, designed to promote menstrual health awareness, cycle tracking, and overall wellness through a soft and user-friendly interface — with exercise guidance, diet plans, and chatbot integration.
 
 🌐 **Live Website:** https://careher.netlify.app/
 
@@ -17,7 +17,7 @@ CareHer is a responsive women-focused healthcare website built using **HTML, CSS
 - **BMI Calculator** – Calculate Body Mass Index with product recommendations
 - **PCOD / PCOS Risk Assessment** – Quiz-based symptom checker
 - **Doctor Appointment Booking** – Book appointments with specialists
-- **User Auth (Signup / Login)** – Local session-based user management
+- **User Auth (Signup / Login)** – Backend-connected user management
 - **Reviews System** – Submit and manage multiple user reviews
 - **Modern UI Design** – Soft pink theme focused on women's wellness
 - **Responsive Design** – Works on desktop, tablet, and mobile
@@ -47,15 +47,42 @@ CareHer is a responsive women-focused healthcare website built using **HTML, CSS
 
 - **HTML** – Structure of the website
 - **CSS** – Styling and responsive layout
-- **JavaScript** – Interactivity, health calculations, and localStorage data management
+- **JavaScript** – Interactivity and health calculations
+- **Node.js + Express** – Backend REST API
+- **JSON File Storage** – Lightweight data persistence (users, reviews, appointments)
+
+---
+
+## 🔌 Backend API
+
+| Method | Endpoint               | Description              |
+|--------|------------------------|--------------------------|
+| POST   | `/api/signup`          | Register a new user      |
+| POST   | `/api/login`           | Login existing user      |
+| GET    | `/api/reviews`         | Fetch all reviews        |
+| POST   | `/api/reviews`         | Submit a new review      |
+| DELETE | `/api/reviews/:id`     | Delete a review          |
+| GET    | `/api/appointments`    | Fetch all appointments   |
+| POST   | `/api/appointments`    | Book a new appointment   |
+| DELETE | `/api/appointments/:id`| Delete an appointment    |
 
 ---
 
 ## 🚀 How to Run
 
-1. Download or clone the repository
+### Frontend only
+1. Clone the repository
 2. Open `index.html` in your browser
-3. Navigate through the website using the navigation bar
+
+### With Backend
+1. Clone the repository
+2. Navigate to the backend folder:
+   ```bash
+   cd backend
+   npm install
+   npm start
+   ```
+3. Open `http://localhost:3000` in your browser
 
 ---
 
@@ -68,6 +95,8 @@ CareHer is a responsive women-focused healthcare website built using **HTML, CSS
 
 ## 🔧 Recent Fixes
 
+- Connected backend API (Node.js + Express) for signup, login, reviews, appointments
+- All frontend JS falls back to localStorage if backend is offline
 - Fixed hardcoded absolute file paths in PCOD/PCOS navigation functions
 - Fixed login crash when no user is registered (null reference guard)
 - Fixed reviews overwriting — now stores multiple reviews as an array

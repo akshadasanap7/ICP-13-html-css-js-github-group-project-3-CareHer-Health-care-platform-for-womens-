@@ -1,23 +1,66 @@
+const API = "http://localhost:3000/api";
+
 window.onload = function () {
-  const savedData = localStorage.getItem("userData");
-  const formContainer = document.getElementById("form-container");
   const localStorageTheme = localStorage.getItem("theme");
   if (localStorageTheme === "dark") toggleTheme();
 
-  if (savedData) {
-    const userData = JSON.parse(savedData);
-    formContainer.innerHTML = `<div class="user-info">
-     <div class="profile-heading">
-       <img src="../images/user.jpeg" class="user-profile">Profile
-     </div>
-     <p><b>Name:</b> ${userData["first-name"]} ${userData["last-name"]}</p>
-     <p><b>Age:</b> ${userData["age"]}yrs</p>
-     <p><b>Email:</b> ${userData["email"]}</p>
-     <p><b>Contact:</b> ${userData["contact"]}</p>
-     <button type="button" class="btn1" onclick="logOut()">Log Out</button>
-     </div>`;
-  }
+  const savedData = localStorage.getItem("userData");
+  if (savedData) showProfile(JSON.parse(savedData));
 };
+
+function showProfile(userData) {
+  document.getElementById("form-container").innerHTML = `<div class="user-info">
+    <div class="profile-heading">
+      <img src="../images/user.jpeg" class="user-profile">Profile
+    </div>
+    <p><b>Name:</b> ${userData["first-name"] || userData.firstName} ${userData["last-name"] || userData.lastName}</p>
+    <p><b>Age:</b> ${userData.age}yrs</p>
+    <p><b>Email:</b> ${userData.email}</p>
+    <p><b>Contact:</b> ${userData.contact}</p>
+    <button type="button" class="btn1" onclick="logOut()">Log Out</button>
+  </div>`;
+}
+
+async function displayUserProfileAndHideForm() {
+  const firstName = document.getElementById("firstname").value.trim();
+  const lastName = document.getElementById("lastname").value.trim();
+  const age = document.getElementById("age").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const contact = document.getElementById("phone-number").value.trim();
+  const password = document.getElementById("password").value.trim();
+
+  if (!firstName || !lastName || !age || !email || !contact || !password) {
+    alert("Please fill all empty fields before submitting...");
+    return;
+  }
+
+  try {
+    const res = await fetch(`${API}/signup`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ firstName, lastName, age, email, contact, password })
+    });
+    const data = await res.json();
+    if (!res.ok) { alert(data.error); return; }
+
+    const userData = { "first-name": firstName, "last-name": lastName, age, email, contact };
+    localStorage.setItem("userData", JSON.stringify(userData));
+    localStorage.setItem("isLoggedIn", "true");
+    showProfile(userData);
+  } catch {
+    // fallback to localStorage if backend not running
+    const userData = { "first-name": firstName, "last-name": lastName, age, email, contact, password };
+    localStorage.setItem("userData", JSON.stringify(userData));
+    localStorage.setItem("isLoggedIn", "true");
+    showProfile(userData);
+  }
+}
+
+function logOut() {
+  localStorage.removeItem("isLoggedIn");
+  localStorage.removeItem("userData");
+  window.location.href = "login.html";
+}
 
 function passwordToggle() {
   const password = document.getElementById("password");
@@ -29,49 +72,6 @@ function passwordToggle() {
     password.type = "password";
     imgElement.src = "../images/hide.png";
   }
-}
-
-function displayUserProfileAndHideForm() {
-  const firstName = document.getElementById("firstname");
-  const lastName = document.getElementById("lastname");
-  const email = document.getElementById("email");
-  const contact = document.getElementById("phone-number");
-  const password = document.getElementById("password");
-  const age = document.getElementById("age");
-  const formContainer = document.getElementById("form-container");
-
-  if (!firstName.value || !lastName.value || !email.value || !contact.value || !age.value || !password.value) {
-    alert("Please fill all empty fields before submitting...");
-    return;
-  }
-
-  const userData = {
-    "first-name": firstName.value,
-    "last-name": lastName.value,
-    "age": age.value,
-    "email": email.value,
-    "contact": contact.value,
-    "password": password.value
-  };
-
-  localStorage.setItem("userData", JSON.stringify(userData));
-  localStorage.setItem("isLoggedIn", "true");
-
-  formContainer.innerHTML = `<div class="user-info">
-     <div class="profile-heading">
-       <img src="../images/user.jpeg" class="user-profile">Profile
-     </div>
-     <p><b>Name:</b> ${userData["first-name"]} ${userData["last-name"]}</p>
-     <p><b>Age:</b> ${userData["age"]}yrs</p>
-     <p><b>Email:</b> ${userData["email"]}</p>
-     <p><b>Contact:</b> ${userData["contact"]}</p>
-     <button type="button" class="btn1" onclick="logOut()">Log Out</button>
-     </div>`;
-}
-
-function logOut() {
-  localStorage.removeItem("isLoggedIn");
-  window.location.href = "login.html";
 }
 
 function toggleTheme() {
@@ -88,6 +88,5 @@ function toggleTheme() {
 }
 
 function hamburger() {
-  const toggleMenu = document.getElementById("toggle-menu-container");
-  toggleMenu.classList.toggle("active");
+  document.getElementById("toggle-menu-container").classList.toggle("active");
 }

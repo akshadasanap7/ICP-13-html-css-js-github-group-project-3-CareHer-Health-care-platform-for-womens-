@@ -1,25 +1,50 @@
-function login() {
-  const email1 = document.getElementById("email").value;
-  const pass = document.getElementById("pass").value;
+const API = "http://localhost:3000/api";
 
-  if (!email1 || !pass) {
+async function login() {
+  const email = document.getElementById("email").value.trim();
+  const pass = document.getElementById("pass").value.trim();
+
+  if (!email || !pass) {
     alert("Please fill all inputs before submitting");
     return;
   }
 
-  const savedData = localStorage.getItem("userData");
-  if (!savedData) {
-    alert("No account found. Please sign up first.");
-    return;
-  }
+  try {
+    const res = await fetch(`${API}/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password: pass })
+    });
+    const data = await res.json();
+    if (!res.ok) { alert(data.error); return; }
 
-  const userData = JSON.parse(savedData);
-  if (email1 === userData.email && pass === userData.password) {
+    localStorage.setItem("userData", JSON.stringify({
+      "first-name": data.user.firstName,
+      "last-name": data.user.lastName,
+      age: data.user.age,
+      email: data.user.email,
+      contact: data.user.contact
+    }));
     localStorage.setItem("isLoggedIn", "true");
     window.location.href = "signup.html";
-  } else {
-    alert("Email or password is incorrect!");
+  } catch {
+    // fallback to localStorage if backend not running
+    const savedData = localStorage.getItem("userData");
+    if (!savedData) { alert("No account found. Please sign up first."); return; }
+    const userData = JSON.parse(savedData);
+    if (email === userData.email && pass === userData.password) {
+      localStorage.setItem("isLoggedIn", "true");
+      window.location.href = "signup.html";
+    } else {
+      alert("Email or password is incorrect!");
+    }
   }
+}
+
+function emptyUserData() {
+  localStorage.removeItem("userData");
+  localStorage.removeItem("isLoggedIn");
+  location.reload();
 }
 
 function passwordToggle() {
@@ -34,15 +59,8 @@ function passwordToggle() {
   }
 }
 
-function emptyUserData() {
-  localStorage.removeItem("userData");
-  localStorage.removeItem("isLoggedIn");
-  location.reload();
-}
-
 window.onload = function () {
-  const localStorageTheme = localStorage.getItem("theme");
-  if (localStorageTheme === "dark") toggleTheme();
+  if (localStorage.getItem("theme") === "dark") toggleTheme();
 };
 
 function toggleTheme() {
@@ -59,6 +77,5 @@ function toggleTheme() {
 }
 
 function hamburger() {
-  const toggleMenu = document.getElementById("toggle-menu-container");
-  toggleMenu.classList.toggle("active");
+  document.getElementById("toggle-menu-container").classList.toggle("active");
 }

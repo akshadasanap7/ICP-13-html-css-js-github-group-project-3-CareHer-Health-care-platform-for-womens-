@@ -1,61 +1,86 @@
+const API = "http://localhost:3000/api";
+
 window.onload = function () {
-  const localStorageTheme = localStorage.getItem("theme");
-  if (localStorageTheme === "dark") toggleTheme();
+  if (localStorage.getItem("theme") === "dark") toggleTheme();
   loadReviews();
 };
 
-function loadReviews() {
-  const container = document.getElementById("container");
-  const reviews = document.getElementById("review-card-container");
-  const savedData = localStorage.getItem("reviewData");
-  if (!savedData) return;
+async function loadReviews() {
+  const container = document.getElementById("review-card-container");
+  try {
+    const res = await fetch(`${API}/reviews`);
+    const reviews = await res.json();
+    renderReviews(reviews, true);
+  } catch {
+    const saved = JSON.parse(localStorage.getItem("reviewData") || "[]");
+    renderReviews(saved, false);
+  }
+}
 
-  const reviewList = JSON.parse(savedData);
-  container.innerHTML = "";
-  reviewList.forEach((reviewData, i) => {
-    reviews.innerHTML += `<div class="review-card">
-      <div class="date">Date: ${reviewData.date}</div>
-      <div class="card-name">Name: ${reviewData.name}</div>
-      Rating:
-      <div class="card-rating">${reviewData.stars}</div>
-      <div class="card-comment">comment:<br>${reviewData.comment}</div>
-      <button class="btn-delete" onclick="deleteReview(${i})">delete</button>
-    </div>`;
+function renderReviews(reviews, fromAPI) {
+  const container = document.getElementById("review-card-container");
+  const existing = container.querySelectorAll(".review-card.dynamic");
+  existing.forEach(el => el.remove());
+
+  reviews.forEach((r) => {
+    const card = document.createElement("div");
+    card.className = "review-card dynamic";
+    card.innerHTML = `
+      <div class="date">Date: ${r.date}</div>
+      <div class="card-name">Name: ${r.name}</div>
+      Rating: <div class="card-rating">${r.stars}</div>
+      <div class="card-comment">comment:<br>${r.comment}</div>
+      <button class="btn-delete" onclick="deleteReview('${fromAPI ? r.id : r.id}', ${!fromAPI})">delete</button>`;
+    container.appendChild(card);
   });
 }
 
-function submitForm() {
-  const name = document.getElementById("name").value;
+async function submitForm() {
+  const name = document.getElementById("name").value.trim();
   const date = document.getElementById("date").value;
-  const rating = document.querySelector('input[name="rating"]:checked')?.value || 0;
-  const stars = "★".repeat(rating) + "☆".repeat(5 - rating);
-  const comment = document.getElementById("comments").value;
+  const rating = parseInt(document.querySelector('input[name="rating"]:checked')?.value || 0);
+  const comment = document.getElementById("comments").value.trim();
 
   if (!name || !date || !rating) {
     alert("Please fill all empty fields before submitting...");
     return;
   }
 
-  const reviewData = { name, date, stars, comment };
-  const existing = JSON.parse(localStorage.getItem("reviewData") || "[]");
-  existing.push(reviewData);
-  localStorage.setItem("reviewData", JSON.stringify(existing));
-
-  document.getElementById("reviewForm").reset();
-  loadReviews();
+  try {
+    const res = await fetch(`${API}/reviews`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, date, rating, comment })
+    });
+    const data = await res.json();
+    if (!res.ok) { alert(data.error); return; }
+    document.getElementById("reviewForm").reset();
+    loadReviews();
+  } catch {
+    const stars = "★".repeat(rating) + "☆".repeat(5 - rating);
+    const review = { id: Date.now(), name, date, stars, comment };
+    const existing = JSON.parse(localStorage.getItem("reviewData") || "[]");
+    existing.push(review);
+    localStorage.setItem("reviewData", JSON.stringify(existing));
+    document.getElementById("reviewForm").reset();
+    loadReviews();
+  }
 }
 
-function deleteReview(index) {
-  const existing = JSON.parse(localStorage.getItem("reviewData") || "[]");
-  existing.splice(index, 1);
-  localStorage.setItem("reviewData", JSON.stringify(existing));
-  document.getElementById("review-card-container").innerHTML = "";
-  loadReviews();
-}
-
-function displayFormDeleteReview() {
-  localStorage.removeItem("reviewData");
-  location.reload();
+async function deleteReview(id, isLocal) {
+  if (isLocal) {
+    const existing = JSON.parse(localStorage.getItem("reviewData") || "[]");
+    const updated = existing.filter(r => r.id !== parseInt(id));
+    localStorage.setItem("reviewData", JSON.stringify(updated));
+    loadReviews();
+    return;
+  }
+  try {
+    await fetch(`${API}/reviews/${id}`, { method: "DELETE" });
+    loadReviews();
+  } catch {
+    loadReviews();
+  }
 }
 
 function updateClock() {
@@ -82,6 +107,5 @@ function toggleTheme() {
 }
 
 function hamburger() {
-  const toggleMenu = document.getElementById("toggle-menu-container");
-  toggleMenu.classList.toggle("active");
+  document.getElementById("toggle-menu-container").classList.toggle("active");
 }
